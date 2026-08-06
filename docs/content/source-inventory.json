@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "sourcePdfExpectedPath": "docs/ABCity-reading-workbook.pdf",
+  "uploadedExcerptPageCount": 9,
+  "workbookExcerpt": {
+    "lesson_1": {
+      "letters": [
+        "c",
+        "o",
+        "s",
+        "a",
+        "t"
+      ],
+      "readWords": [
+        "sat",
+        "cat",
+        "cot",
+        "tac",
+        "soc",
+        "toc"
+      ],
+      "lines": [
+        "A cat sat at a cot."
+      ]
+    },
+    "lesson_2": {
+      "letters": [
+        "m",
+        "d",
+        "r"
+      ],
+      "readWords": [
+        "Tom",
+        "mom",
+        "dad",
+        "Sam",
+        "mat",
+        "mad"
+      ],
+      "lines": [
+        "Tom sat.",
+        "Cat sat.",
+        "Rat sat.",
+        "Tom mad at cat."
+      ]
+    },
+    "lesson_3": {
+      "letters": [
+        "g",
+        "e",
+        "h"
+      ],
+      "readWords": [
+        "egg",
+        "get",
+        "met",
+        "set",
+        "red",
+        "Ted",
+        "Greg",
+        "has"
+      ],
+      "lines": []
+    },
+    "lesson_3_1": {
+      "patterns": [
+        "sh",
+        "ch"
+      ],
+      "readWords": [
+        "chat",
+        "shed",
+        "cash",
+        "dash",
+        "smash",
+        "shot"
+      ],
+      "lines": [
+        "Ted has a red shed."
+      ]
+    },
+    "lesson_4": {
+      "letters": [
+        "n",
+        "i",
+        "f"
+      ],
+      "readWords": [
+        "tin",
+        "fin",
+        "fig",
+        "dig",
+        "Tim",
+        "is",
+        "lid"
+      ],
+      "lines": []
+    },
+    "lesson_4_1": {
+      "patterns": [
+        "th"
+      ],
+      "readWords": [
+        "this",
+        "that",
+        "thin",
+        "than",
+        "the"
+      ],
+      "lines": [
+        "This is a fish.",
+        "The fish has a thin fin."
+      ]
+    },
+    "lesson_5": {
+      "letters": [
+        "u",
+        "b",
+        "l",
+        "p"
+      ],
+      "readWords": [
+        "cub",
+        "rub",
+        "tub",
+        "tip",
+        "sip",
+        "ship",
+        "mum",
+        "gum"
+      ],
+      "lines": [
+        "Mum, give me a gum!"
+      ]
+    },
+    "lesson_6": {
+      "letters": [
+        "k",
+        "y",
+        "w"
+      ],
+      "readWords": [
+        "win",
+        "wig",
+        "with",
+        "was",
+        "wing",
+        "wet",
+        "web",
+        "wagon"
+      ],
+      "lines": []
+    },
+    "lesson_6_1": {
+      "patterns": [
+        "ck"
+      ],
+      "readWords": [
+        "chick",
+        "thick",
+        "tick",
+        "pick",
+        "back",
+        "pack",
+        "kick",
+        "Mick",
+        "Nick",
+        "Rick",
+        "Patrick"
+      ],
+      "lines": [
+        "Nick and Rick have a pet chick Patrick."
+      ]
+    }
+  },
+  "authorApprovedPictureCueWords": {
+    "a": "ant",
+    "b": "bus",
+    "c": "cat",
+    "d": "dog",
+    "e": "egg",
+    "f": "frog",
+    "g": "goat",
+    "h": "hat",
+    "i": "igloo",
+    "j": "jam",
+    "k": "king",
+    "l": "lion",
+    "m": "mouse",
+    "n": "nest",
+    "o": "octopus",
+    "p": "pen",
+    "q": "queen",
+    "r": "rabbit",
+    "s": "sun",
+    "t": "tiger",
+    "u": "umbrella",
+    "v": "van",
+    "w": "wagon",
+    "x": "xylophone",
+    "y": "yo-yo",
+    "z": "zebra"
+  },
+  "authorApprovedHardSentences": [
+    "A cat sat at a cot.",
+    "Ted has a red shed.",
+    "A fish has a thin fin.",
+    "Mum, give me a gum!",
+    "Nick has a chick.",
+    "Jack has a jet.",
+    "A fox hops into the box."
+  ],
+  "authorityRule": "Task JSON files and AUTHOR_OVERRIDES.md are the implementation source of truth; the PDF is reference."
+}

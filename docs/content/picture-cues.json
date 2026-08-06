@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "description": "Author-approved ABCity picture cue for each English letter. Images must contain no printed word or letter.",
+  "items": [
+    {
+      "letter": "a",
+      "cueWord": "ant",
+      "imagePath": "assets/images/cues/a-ant.svg",
+      "audioPath": "assets/audio/cues/ant.mp3"
+    },
+    {
+      "letter": "b",
+      "cueWord": "bus",
+      "imagePath": "assets/images/cues/b-bus.svg",
+      "audioPath": "assets/audio/cues/bus.mp3"
+    },
+    {
+      "letter": "c",
+      "cueWord": "cat",
+      "imagePath": "assets/images/cues/c-cat.svg",
+      "audioPath": "assets/audio/cues/cat.mp3"
+    },
+    {
+      "letter": "d",
+      "cueWord": "dog",
+      "imagePath": "assets/images/cues/d-dog.svg",
+      "audioPath": "assets/audio/cues/dog.mp3"
+    },
+    {
+      "letter": "e",
+      "cueWord": "egg",
+      "imagePath": "assets/images/cues/e-egg.svg",
+      "audioPath": "assets/audio/cues/egg.mp3"
+    },
+    {
+      "letter": "f",
+      "cueWord": "frog",
+      "imagePath": "assets/images/cues/f-frog.svg",
+      "audioPath": "assets/audio/cues/frog.mp3"
+    },
+    {
+      "letter": "g",
+      "cueWord": "goat",
+      "imagePath": "assets/images/cues/g-goat.svg",
+      "audioPath": "assets/audio/cues/goat.mp3"
+    },
+    {
+      "letter": "h",
+      "cueWord": "hat",
+      "imagePath": "assets/images/cues/h-hat.svg",
+      "audioPath": "assets/audio/cues/hat.mp3"
+    },
+    {
+      "letter": "i",
+      "cueWord": "igloo",
+      "imagePath": "assets/images/cues/i-igloo.svg",
+      "audioPath": "assets/audio/cues/igloo.mp3"
+    },
+    {
+      "letter": "j",
+      "cueWord": "jam",
+      "imagePath": "assets/images/cues/j-jam.svg",
+      "audioPath": "assets/audio/cues/jam.mp3"
+    },
+    {
+      "letter": "k",
+      "cueWord": "king",
+      "imagePath": "assets/images/cues/k-king.svg",
+      "audioPath": "assets/audio/cues/king.mp3"
+    },
+    {
+      "letter": "l",
+      "cueWord": "lion",
+      "imagePath": "assets/images/cues/l-lion.svg",
+      "audioPath": "assets/audio/cues/lion.mp3"
+    },
+    {
+      "letter": "m",
+      "cueWord": "mouse",
+      "imagePath": "assets/images/cues/m-mouse.svg",
+      "audioPath": "assets/audio/cues/mouse.mp3"
+    },
+    {
+      "letter": "n",
+      "cueWord": "nest",
+      "imagePath": "assets/images/cues/n-nest.svg",
+      "audioPath": "assets/audio/cues/nest.mp3"
+    },
+    {
+      "letter": "o",
+      "cueWord": "octopus",
+      "imagePath": "assets/images/cues/o-octopus.svg",
+      "audioPath": "assets/audio/cues/octopus.mp3"
+    },
+    {
+      "letter": "p",
+      "cueWord": "pen",
+      "imagePath": "assets/images/cues/p-pen.svg",
+      "audioPath": "assets/audio/cues/pen.mp3"
+    },
+    {
+      "letter": "q",
+      "cueWord": "queen",
+      "imagePath": "assets/images/cues/q-queen.svg",
+      "audioPath": "assets/audio/cues/queen.mp3"
+    },
+    {
+      "letter": "r",
+      "cueWord": "rabbit",
+      "imagePath": "assets/images/cues/r-rabbit.svg",
+      "audioPath": "assets/audio/cues/rabbit.mp3"
+    },
+    {
+      "letter": "s",
+      "cueWord": "sun",
+      "imagePath": "assets/images/cues/s-sun.svg",
+      "audioPath": "assets/audio/cues/sun.mp3"
+    },
+    {
+      "letter": "t",
+      "cueWord": "tiger",
+      "imagePath": "assets/images/cues/t-tiger.svg",
+      "audioPath": "assets/audio/cues/tiger.mp3"
+    },
+    {
+      "letter": "u",
+      "cueWord": "umbrella",
+      "imagePath": "assets/images/cues/u-umbrella.svg",
+      "audioPath": "assets/audio/cues/umbrella.mp3"
+    },
+    {
+      "letter": "v",
+      "cueWord": "van",
+      "imagePath": "assets/images/cues/v-van.svg",
+      "audioPath": "assets/audio/cues/van.mp3"
+    },
+    {
+      "letter": "w",
+      "cueWord": "wagon",
+      "imagePath": "assets/images/cues/w-wagon.svg",
+      "audioPath": "assets/audio/cues/wagon.mp3"
+    },
+    {
+      "letter": "x",
+      "cueWord": "xylophone",
+      "imagePath": "assets/images/cues/x-xylophone.svg",
+      "audioPath": "assets/audio/cues/xylophone.mp3"
+    },
+    {
+      "letter": "y",
+      "cueWord": "yo-yo",
+      "imagePath": "assets/images/cues/y-yo-yo.svg",
+      "audioPath": "assets/audio/cues/yo-yo.mp3"
+    },
+    {
+      "letter": "z",
+      "cueWord": "zebra",
+      "imagePath": "assets/images/cues/z-zebra.svg",
+      "audioPath": "assets/audio/cues/zebra.mp3"
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "gameLevel": "hard",
+  "taskType": "read_three_similar_sentences_and_match_scene",
+  "tasksPerPlay": 1,
+  "randomizeTasks": true,
+  "randomizeOptions": true,
+  "childInstructionRu": "Прочитай предложения и выбери то, которое подходит к картинке.",
+  "rules": [
+    "Show one scene image and exactly three text-only sentence cards.",
+    "Exactly one sentence must match the scene.",
+    "Distractors differ from the correct sentence by only one or two words.",
+    "Do not play sentence audio before the child answers.",
+    "Do not invent sentence options at runtime.",
+    "Use exact spelling and punctuation stored in this file."
+  ],
+  "tasks": [
+    {
+      "id": "hard-cat-cot",
+      "sceneImage": "assets/images/hard/cat-on-cot.svg",
+      "sceneDescriptionRu": "Кот сидит на раскладушке.",
+      "options": [
+        "A cat sat at a cot.",
+        "A cat sat at a box.",
+        "A fox sat at a cot."
+      ],
+      "correctAnswer": "A cat sat at a cot.",
+      "sourceCorrectSentence": "author_approved_and_pdf_verified"
+    },
+    {
+      "id": "hard-ted-shed",
+      "sceneImage": "assets/images/hard/ted-red-shed.svg",
+      "sceneDescriptionRu": "Тед стоит рядом с красным сараем.",
+      "options": [
+        "Ted has a red shed.",
+        "Ted has a red hat.",
+        "Greg has a red shed."
+      ],
+      "correctAnswer": "Ted has a red shed.",
+      "sourceCorrectSentence": "author_approved_and_pdf_verified"
+    },
+    {
+      "id": "hard-fish-fin",
+      "sceneImage": "assets/images/hard/fish-thin-fin.svg",
+      "sceneDescriptionRu": "У рыбы тонкий плавник.",
+      "options": [
+        "A fish has a thin fin.",
+        "A fish has a thick fin.",
+        "A cat has a thin fin."
+      ],
+      "correctAnswer": "A fish has a thin fin.",
+      "sourceCorrectSentence": "author_override_of_pdf_wording"
+    },
+    {
+      "id": "hard-mum-gum",
+      "sceneImage": "assets/images/hard/mum-gives-gum.svg",
+      "sceneDescriptionRu": "Мама даёт ребёнку жвачку.",
+      "options": [
+        "Mum, give me a gum!",
+        "Mum, give me a hat!",
+        "Mum, give me a pen!"
+      ],
+      "correctAnswer": "Mum, give me a gum!",
+      "sourceCorrectSentence": "author_approved_and_pdf_verified"
+    },
+    {
+      "id": "hard-nick-chick",
+      "sceneImage": "assets/images/hard/nick-chick.svg",
+      "sceneDescriptionRu": "У Ника есть цыплёнок.",
+      "options": [
+        "Nick has a chick.",
+        "Nick has a cat.",
+        "Rick has a chick."
+      ],
+      "correctAnswer": "Nick has a chick.",
+      "sourceCorrectSentence": "author_approved_override"
+    },
+    {
+      "id": "hard-jack-jet",
+      "sceneImage": "assets/images/hard/jack-jet.svg",
+      "sceneDescriptionRu": "У Джека есть реактивный самолёт.",
+      "options": [
+        "Jack has a jet.",
+        "Jack has a hat.",
+        "Ted has a jet."
+      ],
+      "correctAnswer": "Jack has a jet.",
+      "sourceCorrectSentence": "author_approved_not_visible_in_uploaded_excerpt"
+    },
+    {
+      "id": "hard-fox-box",
+      "sceneImage": "assets/images/hard/fox-box.svg",
+      "sceneDescriptionRu": "Лиса запрыгивает в коробку.",
+      "options": [
+        "A fox hops into the box.",
+        "A cat hops into the box.",
+        "A fox hops into the cot."
+      ],
+      "correctAnswer": "A fox hops into the box.",
+      "sourceCorrectSentence": "author_approved_not_visible_in_uploaded_excerpt"
+    }
+  ]
+}

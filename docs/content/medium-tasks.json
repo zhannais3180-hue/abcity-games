@@ -1,0 +1,436 @@
+{
+  "schemaVersion": 1,
+  "gameLevel": "medium",
+  "taskType": "listen_and_choose_written_cvc_word",
+  "tasksPerPlay": 3,
+  "randomizeTasks": true,
+  "randomizeOptions": true,
+  "childInstructionRu": "Послушай слово и выбери, как оно пишется.",
+  "rules": [
+    "Play the target word as audio.",
+    "Show exactly three text-only word cards.",
+    "Do not show pictures on Medium cards.",
+    "Every option must be a three-letter approved CVC word.",
+    "Distractors must differ from the correct word by one or two letters.",
+    "Never place C-spelling and K-spelling alternatives in the same row.",
+    "Do not invent extra distractors at runtime."
+  ],
+  "tasks": [
+    {
+      "id": "medium-cat",
+      "enabled": true,
+      "audioWord": "cat",
+      "audioPath": "assets/audio/words/cat.mp3",
+      "options": [
+        "cat",
+        "cot",
+        "sat"
+      ],
+      "correctAnswer": "cat",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-cot",
+      "enabled": true,
+      "audioWord": "cot",
+      "audioPath": "assets/audio/words/cot.mp3",
+      "options": [
+        "cot",
+        "cat",
+        "sat"
+      ],
+      "correctAnswer": "cot",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-sat",
+      "enabled": true,
+      "audioWord": "sat",
+      "audioPath": "assets/audio/words/sat.mp3",
+      "options": [
+        "sat",
+        "cat",
+        "mat"
+      ],
+      "correctAnswer": "sat",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-mat",
+      "enabled": true,
+      "audioWord": "mat",
+      "audioPath": "assets/audio/words/mat.mp3",
+      "options": [
+        "mat",
+        "mad",
+        "sat"
+      ],
+      "correctAnswer": "mat",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-mad",
+      "enabled": true,
+      "audioWord": "mad",
+      "audioPath": "assets/audio/words/mad.mp3",
+      "options": [
+        "mad",
+        "mat",
+        "dad"
+      ],
+      "correctAnswer": "mad",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-dad",
+      "enabled": true,
+      "audioWord": "dad",
+      "audioPath": "assets/audio/words/dad.mp3",
+      "options": [
+        "dad",
+        "mad",
+        "red"
+      ],
+      "correctAnswer": "dad",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-get",
+      "enabled": true,
+      "audioWord": "get",
+      "audioPath": "assets/audio/words/get.mp3",
+      "options": [
+        "get",
+        "met",
+        "set"
+      ],
+      "correctAnswer": "get",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-met",
+      "enabled": true,
+      "audioWord": "met",
+      "audioPath": "assets/audio/words/met.mp3",
+      "options": [
+        "met",
+        "get",
+        "set"
+      ],
+      "correctAnswer": "met",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-set",
+      "enabled": true,
+      "audioWord": "set",
+      "audioPath": "assets/audio/words/set.mp3",
+      "options": [
+        "set",
+        "get",
+        "met"
+      ],
+      "correctAnswer": "set",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-red",
+      "enabled": true,
+      "audioWord": "red",
+      "audioPath": "assets/audio/words/red.mp3",
+      "options": [
+        "red",
+        "mad",
+        "set"
+      ],
+      "correctAnswer": "red",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-tin",
+      "enabled": true,
+      "audioWord": "tin",
+      "audioPath": "assets/audio/words/tin.mp3",
+      "options": [
+        "tin",
+        "fin",
+        "tip"
+      ],
+      "correctAnswer": "tin",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-fin",
+      "enabled": true,
+      "audioWord": "fin",
+      "audioPath": "assets/audio/words/fin.mp3",
+      "options": [
+        "fin",
+        "tin",
+        "fig"
+      ],
+      "correctAnswer": "fin",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-fig",
+      "enabled": true,
+      "audioWord": "fig",
+      "audioPath": "assets/audio/words/fig.mp3",
+      "options": [
+        "fig",
+        "dig",
+        "fin"
+      ],
+      "correctAnswer": "fig",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-dig",
+      "enabled": true,
+      "audioWord": "dig",
+      "audioPath": "assets/audio/words/dig.mp3",
+      "options": [
+        "dig",
+        "fig",
+        "dog"
+      ],
+      "correctAnswer": "dig",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-lid",
+      "enabled": true,
+      "audioWord": "lid",
+      "audioPath": "assets/audio/words/lid.mp3",
+      "options": [
+        "lid",
+        "dig",
+        "red"
+      ],
+      "correctAnswer": "lid",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-cub",
+      "enabled": true,
+      "audioWord": "cub",
+      "audioPath": "assets/audio/words/cub.mp3",
+      "options": [
+        "cub",
+        "rub",
+        "tub"
+      ],
+      "correctAnswer": "cub",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-rub",
+      "enabled": true,
+      "audioWord": "rub",
+      "audioPath": "assets/audio/words/rub.mp3",
+      "options": [
+        "rub",
+        "cub",
+        "tub"
+      ],
+      "correctAnswer": "rub",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-tub",
+      "enabled": true,
+      "audioWord": "tub",
+      "audioPath": "assets/audio/words/tub.mp3",
+      "options": [
+        "tub",
+        "cub",
+        "rub"
+      ],
+      "correctAnswer": "tub",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-tip",
+      "enabled": true,
+      "audioWord": "tip",
+      "audioPath": "assets/audio/words/tip.mp3",
+      "options": [
+        "tip",
+        "sip",
+        "tin"
+      ],
+      "correctAnswer": "tip",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-sip",
+      "enabled": true,
+      "audioWord": "sip",
+      "audioPath": "assets/audio/words/sip.mp3",
+      "options": [
+        "sip",
+        "tip",
+        "sat"
+      ],
+      "correctAnswer": "sip",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-mum",
+      "enabled": true,
+      "audioWord": "mum",
+      "audioPath": "assets/audio/words/mum.mp3",
+      "options": [
+        "mum",
+        "gum",
+        "mom"
+      ],
+      "correctAnswer": "mum",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-gum",
+      "enabled": true,
+      "audioWord": "gum",
+      "audioPath": "assets/audio/words/gum.mp3",
+      "options": [
+        "gum",
+        "mum",
+        "cub"
+      ],
+      "correctAnswer": "gum",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-win",
+      "enabled": true,
+      "audioWord": "win",
+      "audioPath": "assets/audio/words/win.mp3",
+      "options": [
+        "win",
+        "wig",
+        "tin"
+      ],
+      "correctAnswer": "win",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-wig",
+      "enabled": true,
+      "audioWord": "wig",
+      "audioPath": "assets/audio/words/wig.mp3",
+      "options": [
+        "wig",
+        "win",
+        "fig"
+      ],
+      "correctAnswer": "wig",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-wet",
+      "enabled": true,
+      "audioWord": "wet",
+      "audioPath": "assets/audio/words/wet.mp3",
+      "options": [
+        "wet",
+        "web",
+        "get"
+      ],
+      "correctAnswer": "wet",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-web",
+      "enabled": true,
+      "audioWord": "web",
+      "audioPath": "assets/audio/words/web.mp3",
+      "options": [
+        "web",
+        "wet",
+        "red"
+      ],
+      "correctAnswer": "web",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-dog",
+      "enabled": true,
+      "audioWord": "dog",
+      "audioPath": "assets/audio/words/dog.mp3",
+      "options": [
+        "dog",
+        "dig",
+        "dad"
+      ],
+      "correctAnswer": "dog",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-hat",
+      "enabled": true,
+      "audioWord": "hat",
+      "audioPath": "assets/audio/words/hat.mp3",
+      "options": [
+        "hat",
+        "mat",
+        "cat"
+      ],
+      "correctAnswer": "hat",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-jam",
+      "enabled": true,
+      "audioWord": "jam",
+      "audioPath": "assets/audio/words/jam.mp3",
+      "options": [
+        "jam",
+        "mad",
+        "mat"
+      ],
+      "correctAnswer": "jam",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-bus",
+      "enabled": true,
+      "audioWord": "bus",
+      "audioPath": "assets/audio/words/bus.mp3",
+      "options": [
+        "bus",
+        "cub",
+        "tub"
+      ],
+      "correctAnswer": "bus",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-sun",
+      "enabled": true,
+      "audioWord": "sun",
+      "audioPath": "assets/audio/words/sun.mp3",
+      "options": [
+        "sun",
+        "tin",
+        "mum"
+      ],
+      "correctAnswer": "sun",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    },
+    {
+      "id": "medium-van",
+      "enabled": true,
+      "audioWord": "van",
+      "audioPath": "assets/audio/words/van.mp3",
+      "options": [
+        "van",
+        "mad",
+        "mat"
+      ],
+      "correctAnswer": "van",
+      "source": "approved_bank_from_workbook_and_author_cues"
+    }
+  ]
+}

@@ -1,0 +1,613 @@
+{
+  "schemaVersion": 1,
+  "gameLevel": "easy",
+  "taskType": "spell_cvc_from_initial_picture_cues",
+  "tasksPerPlay": 3,
+  "randomizeTasks": true,
+  "randomizeCardOrder": true,
+  "childInstructionRu": "Собери слово по первым буквам картинок.",
+  "rules": [
+    "Show the target CVC word.",
+    "Show picture cards without printed words or letters.",
+    "The child chooses picture cues whose initial letters spell the target word in order.",
+    "Use only picture cues from picture-cues.json.",
+    "Do not invent new cue words.",
+    "Repeated letters are allowed and require duplicate visual cards."
+  ],
+  "tasks": [
+    {
+      "id": "easy-sat",
+      "enabled": true,
+      "targetWord": "sat",
+      "displayTarget": "SAT",
+      "answerLetters": [
+        "s",
+        "a",
+        "t"
+      ],
+      "pictureCueLetters": [
+        "s",
+        "a",
+        "t"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-cat",
+      "enabled": true,
+      "targetWord": "cat",
+      "displayTarget": "CAT",
+      "answerLetters": [
+        "c",
+        "a",
+        "t"
+      ],
+      "pictureCueLetters": [
+        "c",
+        "a",
+        "t"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-cot",
+      "enabled": true,
+      "targetWord": "cot",
+      "displayTarget": "COT",
+      "answerLetters": [
+        "c",
+        "o",
+        "t"
+      ],
+      "pictureCueLetters": [
+        "c",
+        "o",
+        "t"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-mom",
+      "enabled": true,
+      "targetWord": "mom",
+      "displayTarget": "MOM",
+      "answerLetters": [
+        "m",
+        "o",
+        "m"
+      ],
+      "pictureCueLetters": [
+        "m",
+        "o",
+        "m"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-dad",
+      "enabled": true,
+      "targetWord": "dad",
+      "displayTarget": "DAD",
+      "answerLetters": [
+        "d",
+        "a",
+        "d"
+      ],
+      "pictureCueLetters": [
+        "d",
+        "a",
+        "d"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-mat",
+      "enabled": true,
+      "targetWord": "mat",
+      "displayTarget": "MAT",
+      "answerLetters": [
+        "m",
+        "a",
+        "t"
+      ],
+      "pictureCueLetters": [
+        "m",
+        "a",
+        "t"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-mad",
+      "enabled": true,
+      "targetWord": "mad",
+      "displayTarget": "MAD",
+      "answerLetters": [
+        "m",
+        "a",
+        "d"
+      ],
+      "pictureCueLetters": [
+        "m",
+        "a",
+        "d"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-get",
+      "enabled": true,
+      "targetWord": "get",
+      "displayTarget": "GET",
+      "answerLetters": [
+        "g",
+        "e",
+        "t"
+      ],
+      "pictureCueLetters": [
+        "g",
+        "e",
+        "t"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-met",
+      "enabled": true,
+      "targetWord": "met",
+      "displayTarget": "MET",
+      "answerLetters": [
+        "m",
+        "e",
+        "t"
+      ],
+      "pictureCueLetters": [
+        "m",
+        "e",
+        "t"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-set",
+      "enabled": true,
+      "targetWord": "set",
+      "displayTarget": "SET",
+      "answerLetters": [
+        "s",
+        "e",
+        "t"
+      ],
+      "pictureCueLetters": [
+        "s",
+        "e",
+        "t"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-red",
+      "enabled": true,
+      "targetWord": "red",
+      "displayTarget": "RED",
+      "answerLetters": [
+        "r",
+        "e",
+        "d"
+      ],
+      "pictureCueLetters": [
+        "r",
+        "e",
+        "d"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-tin",
+      "enabled": true,
+      "targetWord": "tin",
+      "displayTarget": "TIN",
+      "answerLetters": [
+        "t",
+        "i",
+        "n"
+      ],
+      "pictureCueLetters": [
+        "t",
+        "i",
+        "n"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-fin",
+      "enabled": true,
+      "targetWord": "fin",
+      "displayTarget": "FIN",
+      "answerLetters": [
+        "f",
+        "i",
+        "n"
+      ],
+      "pictureCueLetters": [
+        "f",
+        "i",
+        "n"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-fig",
+      "enabled": true,
+      "targetWord": "fig",
+      "displayTarget": "FIG",
+      "answerLetters": [
+        "f",
+        "i",
+        "g"
+      ],
+      "pictureCueLetters": [
+        "f",
+        "i",
+        "g"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-dig",
+      "enabled": true,
+      "targetWord": "dig",
+      "displayTarget": "DIG",
+      "answerLetters": [
+        "d",
+        "i",
+        "g"
+      ],
+      "pictureCueLetters": [
+        "d",
+        "i",
+        "g"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-lid",
+      "enabled": true,
+      "targetWord": "lid",
+      "displayTarget": "LID",
+      "answerLetters": [
+        "l",
+        "i",
+        "d"
+      ],
+      "pictureCueLetters": [
+        "l",
+        "i",
+        "d"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-cub",
+      "enabled": true,
+      "targetWord": "cub",
+      "displayTarget": "CUB",
+      "answerLetters": [
+        "c",
+        "u",
+        "b"
+      ],
+      "pictureCueLetters": [
+        "c",
+        "u",
+        "b"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-rub",
+      "enabled": true,
+      "targetWord": "rub",
+      "displayTarget": "RUB",
+      "answerLetters": [
+        "r",
+        "u",
+        "b"
+      ],
+      "pictureCueLetters": [
+        "r",
+        "u",
+        "b"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-tub",
+      "enabled": true,
+      "targetWord": "tub",
+      "displayTarget": "TUB",
+      "answerLetters": [
+        "t",
+        "u",
+        "b"
+      ],
+      "pictureCueLetters": [
+        "t",
+        "u",
+        "b"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-tip",
+      "enabled": true,
+      "targetWord": "tip",
+      "displayTarget": "TIP",
+      "answerLetters": [
+        "t",
+        "i",
+        "p"
+      ],
+      "pictureCueLetters": [
+        "t",
+        "i",
+        "p"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-sip",
+      "enabled": true,
+      "targetWord": "sip",
+      "displayTarget": "SIP",
+      "answerLetters": [
+        "s",
+        "i",
+        "p"
+      ],
+      "pictureCueLetters": [
+        "s",
+        "i",
+        "p"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-mum",
+      "enabled": true,
+      "targetWord": "mum",
+      "displayTarget": "MUM",
+      "answerLetters": [
+        "m",
+        "u",
+        "m"
+      ],
+      "pictureCueLetters": [
+        "m",
+        "u",
+        "m"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-gum",
+      "enabled": true,
+      "targetWord": "gum",
+      "displayTarget": "GUM",
+      "answerLetters": [
+        "g",
+        "u",
+        "m"
+      ],
+      "pictureCueLetters": [
+        "g",
+        "u",
+        "m"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-win",
+      "enabled": true,
+      "targetWord": "win",
+      "displayTarget": "WIN",
+      "answerLetters": [
+        "w",
+        "i",
+        "n"
+      ],
+      "pictureCueLetters": [
+        "w",
+        "i",
+        "n"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-wig",
+      "enabled": true,
+      "targetWord": "wig",
+      "displayTarget": "WIG",
+      "answerLetters": [
+        "w",
+        "i",
+        "g"
+      ],
+      "pictureCueLetters": [
+        "w",
+        "i",
+        "g"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-wet",
+      "enabled": true,
+      "targetWord": "wet",
+      "displayTarget": "WET",
+      "answerLetters": [
+        "w",
+        "e",
+        "t"
+      ],
+      "pictureCueLetters": [
+        "w",
+        "e",
+        "t"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-web",
+      "enabled": true,
+      "targetWord": "web",
+      "displayTarget": "WEB",
+      "answerLetters": [
+        "w",
+        "e",
+        "b"
+      ],
+      "pictureCueLetters": [
+        "w",
+        "e",
+        "b"
+      ],
+      "source": "workbook_read_word",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-bus",
+      "enabled": true,
+      "targetWord": "bus",
+      "displayTarget": "BUS",
+      "answerLetters": [
+        "b",
+        "u",
+        "s"
+      ],
+      "pictureCueLetters": [
+        "b",
+        "u",
+        "s"
+      ],
+      "source": "author_approved_picture_cue",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-dog",
+      "enabled": true,
+      "targetWord": "dog",
+      "displayTarget": "DOG",
+      "answerLetters": [
+        "d",
+        "o",
+        "g"
+      ],
+      "pictureCueLetters": [
+        "d",
+        "o",
+        "g"
+      ],
+      "source": "author_approved_picture_cue",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-hat",
+      "enabled": true,
+      "targetWord": "hat",
+      "displayTarget": "HAT",
+      "answerLetters": [
+        "h",
+        "a",
+        "t"
+      ],
+      "pictureCueLetters": [
+        "h",
+        "a",
+        "t"
+      ],
+      "source": "author_approved_picture_cue",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-jam",
+      "enabled": true,
+      "targetWord": "jam",
+      "displayTarget": "JAM",
+      "answerLetters": [
+        "j",
+        "a",
+        "m"
+      ],
+      "pictureCueLetters": [
+        "j",
+        "a",
+        "m"
+      ],
+      "source": "author_approved_picture_cue",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-sun",
+      "enabled": true,
+      "targetWord": "sun",
+      "displayTarget": "SUN",
+      "answerLetters": [
+        "s",
+        "u",
+        "n"
+      ],
+      "pictureCueLetters": [
+        "s",
+        "u",
+        "n"
+      ],
+      "source": "author_approved_picture_cue",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    },
+    {
+      "id": "easy-van",
+      "enabled": true,
+      "targetWord": "van",
+      "displayTarget": "VAN",
+      "answerLetters": [
+        "v",
+        "a",
+        "n"
+      ],
+      "pictureCueLetters": [
+        "v",
+        "a",
+        "n"
+      ],
+      "source": "author_approved_picture_cue",
+      "note": "Resolve each letter through picture-cues.json. Repeated letters require duplicate copies."
+    }
+  ]
+}
