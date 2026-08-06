@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { APPROVED_HARD, STORAGE_KEY, TASK_COUNTS, applyWrong, freshState, selectRun, validateContent } from "./js/game.js";
+import { APPROVED_HARD, STORAGE_KEY, TASK_COUNTS, applyWrong, freshState, selectRun, shuffleEasyLetters, validateContent } from "./js/game.js";
 import { CUE_ART_IDS, cueArt } from "./js/cue-art.js";
 import { sceneArt } from "./js/scene-art.js";
 
@@ -18,7 +18,14 @@ for (const [level, ids] of Object.entries(run)) for (const id of ids) assert.ok(
 
 for (const task of content.easy.tasks.filter(t => t.enabled !== false)) {
   assert.equal(task.pictureCueLetters.join(""), task.targetWord);
-  task.pictureCueLetters.forEach(letter => assert.match(cueArt(letter, cueMap.get(letter).cueWord), new RegExp(`data-cue-art="${CUE_ART_IDS[letter]}"`)));
+  task.pictureCueLetters.forEach(letter => {
+    const picture = cueArt(letter, cueMap.get(letter).cueWord);
+    assert.match(picture, new RegExp(`data-cue-art="${CUE_ART_IDS[letter]}"`));
+    assert.doesNotMatch(picture, /<text\b|aria-label=/i);
+  });
+  const shuffled = shuffleEasyLetters(task.answerLetters, () => .999);
+  assert.notEqual(shuffled.map(token => token.split(":")[1]).join(""), task.targetWord);
+  assert.deepEqual(shuffled.map(token => token.split(":")[1]).sort(), [...task.answerLetters].sort());
 }
 for (const task of content.medium.tasks.filter(t => t.enabled !== false)) {
   assert.equal(task.options.length, 3); assert.equal(task.options.filter(x => x === task.correctAnswer).length, 1);
@@ -36,4 +43,7 @@ state.openedRings.push("easy"); state = applyWrong(state); assert.deepEqual(stat
 assert.equal(STORAGE_KEY, "abcity.secretVault.v1");
 const source = fs.readFileSync(new URL("./js/main.js", import.meta.url), "utf8");
 assert.doesNotMatch(source, /setInterval|countdown/i); assert.match(source, /exactly|three choices|approved/i);
+const easySource = source.slice(source.indexOf("function easyScreen"), source.indexOf("function mediumScreen"));
+assert.doesNotMatch(easySource, /displayTarget|targetWord|data-cue-token/);
+assert.match(easySource, /data-letter-token/); assert.match(easySource, />Проверить</);
 console.log("Secret Vault checks passed.");

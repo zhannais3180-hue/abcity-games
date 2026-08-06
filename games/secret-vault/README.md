@@ -1,5 +1,7 @@
 # Secret Vault
 
+Интерфейс игры полностью переведён на русский язык, а изучаемые английские буквы, слова, варианты ответов и предложения остаются на английском без изменений.
+
 Secret Vault is the third standalone ABCity browser game. It uses only plain HTML, CSS, JavaScript, local vector art, Web Audio, and browser speech synthesis.
 
 ## Run locally

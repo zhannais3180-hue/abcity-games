@@ -1,8 +1,8 @@
 export const STORAGE_KEY = "abcity.mysteryEgg.v1";
 export const LEVELS = Object.freeze([
-  { id: "easy", name: "Easy", cards: 7, required: 5 },
-  { id: "medium", name: "Medium", cards: 10, required: 5 },
-  { id: "hard", name: "Hard", cards: 13, required: 5 }
+  { id: "easy", name: "Легко", cards: 7, required: 5 },
+  { id: "medium", name: "Средне", cards: 10, required: 5 },
+  { id: "hard", name: "Сложно", cards: 13, required: 5 }
 ]);
 
 export function shuffle(items, random = Math.random) {
@@ -25,7 +25,7 @@ export function createTargetPool(cues, random = Math.random) {
 export function createRound(cues, targetLetter, cardCount, random = Math.random) {
   const targetKey = normalizeLetter(targetLetter);
   const correct = cues.find(cue => normalizeLetter(cue.letter) === targetKey);
-  if (!correct) throw new Error(`Missing approved picture cue for “${targetLetter}”.`);
+  if (!correct) throw new Error(`Нет утверждённой картинки-подсказки для буквы «${targetLetter}».`);
   const distractors = shuffle(cues.filter(cue => normalizeLetter(cue.letter) !== targetKey), random).slice(0, cardCount - 1);
   return shuffle([correct, ...distractors], random);
 }

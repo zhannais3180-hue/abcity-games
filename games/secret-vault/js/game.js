@@ -16,6 +16,13 @@ export function shuffle(items, random = Math.random) {
   return result;
 }
 
+export function shuffleEasyLetters(answerLetters, random = Math.random) {
+  const tokens = answerLetters.map((letter, index) => `${index}:${letter}`);
+  const shuffled = shuffle(tokens, random);
+  if (shuffled.map(token => token.split(":")[1]).join("") === answerLetters.join("")) shuffled.push(shuffled.shift());
+  return shuffled;
+}
+
 export function selectRun(content, random = Math.random) {
   const enabled = key => content[key].tasks.filter(task => task.enabled !== false);
   return {
@@ -35,22 +42,22 @@ export function applyWrong(state) {
 }
 
 export function validateContent(content, cueMap) {
-  for (const key of LEVELS) if (!content[key]?.tasks || content[key].tasks.filter(t => t.enabled !== false).length < TASK_COUNTS[key]) throw new Error(`Not enough enabled ${key} tasks.`);
+  for (const key of LEVELS) if (!content[key]?.tasks || content[key].tasks.filter(t => t.enabled !== false).length < TASK_COUNTS[key]) throw new Error(`Недостаточно включённых заданий уровня «${key}».`);
   for (const task of content.easy.tasks.filter(t => t.enabled !== false)) {
-    if (task.answerLetters.join("") !== task.targetWord || task.pictureCueLetters.join("") !== task.targetWord) throw new Error(`Easy initials do not form ${task.id}.`);
-    for (const letter of task.pictureCueLetters) if (!cueMap.has(letter)) throw new Error(`Missing approved picture cue for “${letter}”.`);
+    if (task.answerLetters.join("") !== task.targetWord || task.pictureCueLetters.join("") !== task.targetWord) throw new Error(`Первые буквы уровня «Легко» не образуют ${task.id}.`);
+    for (const letter of task.pictureCueLetters) if (!cueMap.has(letter)) throw new Error(`Нет утверждённой картинки-подсказки для буквы «${letter}».`);
   }
   for (const task of content.medium.tasks.filter(t => t.enabled !== false)) {
-    if (task.options.length !== 3 || task.options.filter(x => x === task.correctAnswer).length !== 1) throw new Error(`Medium task ${task.id} must have three choices and one answer.`);
+    if (task.options.length !== 3 || task.options.filter(x => x === task.correctAnswer).length !== 1) throw new Error(`В задании ${task.id} уровня «Средне» должно быть три варианта и один ответ.`);
     for (const option of task.options.filter(x => x !== task.correctAnswer)) {
       const distance = [...task.correctAnswer].filter((c, i) => c !== option[i]).length;
-      if (distance < 1 || distance > 2) throw new Error(`Medium distractor in ${task.id} differs by more than 1–2 letters.`);
+      if (distance < 1 || distance > 2) throw new Error(`Неверный вариант в задании ${task.id} уровня «Средне» отличается больше чем на 1–2 буквы.`);
     }
     const alternative = task.correctAnswer.startsWith("c") ? `k${task.correctAnswer.slice(1)}` : task.correctAnswer.startsWith("k") ? `c${task.correctAnswer.slice(1)}` : null;
-    if (alternative && task.options.includes(alternative)) throw new Error(`C/K conflict in ${task.id}.`);
+    if (alternative && task.options.includes(alternative)) throw new Error(`В задании ${task.id} смешаны варианты с C и K.`);
   }
   for (const task of content.hard.tasks.filter(t => t.enabled !== false)) {
-    if (task.options.length !== 3 || task.options.filter(x => x === task.correctAnswer).length !== 1 || !APPROVED_HARD.includes(task.correctAnswer)) throw new Error(`Hard task ${task.id} is not approved.`);
+    if (task.options.length !== 3 || task.options.filter(x => x === task.correctAnswer).length !== 1 || !APPROVED_HARD.includes(task.correctAnswer)) throw new Error(`Задание ${task.id} уровня «Сложно» не утверждено.`);
   }
   return true;
 }

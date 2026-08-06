@@ -1,5 +1,7 @@
 # Mystery Egg
 
+Интерфейс игры полностью переведён на русский язык, а изучаемые английские буквы и утверждённые слова-подсказки остаются на английском без изменений.
+
 A standalone, client-side ABCity letter-to-picture matching game. Each of the three levels requires five correct clues; difficulty changes only through the 7, 10, and 13-card grids.
 
 ## Run

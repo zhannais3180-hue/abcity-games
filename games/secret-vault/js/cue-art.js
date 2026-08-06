@@ -38,7 +38,7 @@ export function cueArtIdentifier(letter) { return CUE_ART_IDS[String(letter).toL
 
 export function cueArt(letter, expectedCueWord = null) {
   const id = cueArtIdentifier(letter), drawing = ART[id];
-  if (!id || !drawing) throw new Error(`No local illustration for ${letter}`);
-  if (expectedCueWord !== null && expectedCueWord !== id) throw new Error(`Cue-art mismatch: ${letter} must render ${expectedCueWord}, not ${id}`);
+  if (!id || !drawing) throw new Error(`Нет локальной иллюстрации для буквы ${letter}`);
+  if (expectedCueWord !== null && expectedCueWord !== id) throw new Error(`Картинка-подсказка не совпадает: для ${letter} нужна ${expectedCueWord}, а не ${id}`);
   return `<svg class="cue-art" data-cue-art="${id}" viewBox="0 0 120 100" aria-hidden="true" focusable="false"><rect x="3" y="3" width="114" height="94" rx="18" fill="#eefcff"/>${drawing}</svg>`;
 }
