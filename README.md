@@ -1,55 +1,54 @@
-# ABCity Content Bank for the Secret Vault game
+# ABCity — игры курса чтения
 
-This folder is ready to copy into a GitHub repository.
+ABCity объединяет три самостоятельные браузерные игры в одно городское приключение. Интерфейс игр — на русском языке, а утверждённый учебный материал (английские буквы, слова и предложения) сохраняется на английском без изменений.
 
-## Recommended repository structure
+## Запуск
 
-```text
-your-repository/
-├── AGENTS.md
-├── docs/
-│   ├── ABCity-reading-workbook.pdf
-│   └── content/
-│       ├── AUTHOR_OVERRIDES.md
-│       ├── content-rules.md
-│       ├── picture-cues.json
-│       ├── easy-tasks.json
-│       ├── medium-tasks.json
-│       ├── hard-tasks.json
-│       ├── source-inventory.json
-│       └── validate_content.py
-└── ...
+Из корня репозитория запустите статический сервер:
+
+```powershell
+python -m http.server 8000
 ```
 
-## Installation
+Откройте общую карту: `http://localhost:8000/`.
 
-1. Copy `AGENTS.md` to the repository root.
-2. Copy the whole `docs/content/` folder.
-3. Put the original workbook PDF at `docs/ABCity-reading-workbook.pdf`.
-4. Tell Codex to read `AGENTS.md` before writing code.
-5. Run:
+Игры доступны и напрямую:
 
-```bash
+- `http://localhost:8000/games/night-rescue/` — «Ночная миссия»;
+- `http://localhost:8000/games/mystery-egg/` — «Таинственное яйцо»;
+- `http://localhost:8000/games/secret-vault/` — «Секретное хранилище».
+
+Сборка, backend и внешние runtime-зависимости не нужны. Для загрузки утверждённых JSON-файлов страницу следует открывать через HTTP, а не через `file://`.
+
+## Сохранение прогресса
+
+Прогресс хранится локально в браузере в существующих ключах:
+
+- `abcity.nightRescue.v1`;
+- `abcity.mysteryEgg.v1`;
+- `abcity.secretVault.v1`.
+
+Главная страница читает эти записи защитно и показывает состояния «Не начато», «В процессе» и «Выполнено». Повреждённая или отсутствующая запись считается неначатой игрой.
+
+## Проверка
+
+Из корня репозитория:
+
+```powershell
+node tests/home-progress.test.mjs
+node games/mystery-egg/test.mjs
+node games/secret-vault/test.mjs
 python docs/content/validate_content.py
+git diff --check
 ```
 
-## Included
+Проверка доступности страниц после запуска сервера:
 
-- 26 approved letter-picture cues.
-- 33 Easy tasks.
-- 32 Medium tasks.
-- 7 Hard tasks.
-- Strict author overrides.
-- A validation script.
-
-## Expected asset paths
-
-```text
-assets/images/cues/c-cat.svg
-assets/audio/words/cat.mp3
-assets/images/hard/cat-on-cot.svg
+```powershell
+Invoke-WebRequest http://localhost:8000/ -UseBasicParsing
+Invoke-WebRequest http://localhost:8000/games/night-rescue/ -UseBasicParsing
+Invoke-WebRequest http://localhost:8000/games/mystery-egg/ -UseBasicParsing
+Invoke-WebRequest http://localhost:8000/games/secret-vault/ -UseBasicParsing
 ```
 
-The package contains content paths, not final image/audio assets.
-
-Codex may randomize approved tasks and option order, but must not create new educational content.
+Правила и источник утверждённого учебного материала находятся в `docs/content/`.
