@@ -49,7 +49,7 @@ const restoredReplay = JSON.parse(JSON.stringify(replay));
 assert.equal(restoredScreen(restoredReplay), "play"); assert.notEqual(restoredScreen(restoredReplay), "final");
 const source = fs.readFileSync(new URL("./js/main.js", import.meta.url), "utf8");
 assert.doesNotMatch(source, /setInterval|countdown/i); assert.match(source, /exactly|three choices|approved/i);
-assert.match(source, /id="replay-vault"[^>]*type="button"/); assert.match(source, /href="\/"/);
+assert.match(source, /id="replay-vault"[^>]*type="button"/); assert.match(source, /href="\.\.\/\.\.\/"/);
 assert.match(source, /querySelector\("#replay-vault"\)\?\.addEventListener\("click"/);
 const easySource = source.slice(source.indexOf("function easyScreen"), source.indexOf("function mediumScreen"));
 assert.doesNotMatch(easySource, /displayTarget|targetWord|data-cue-token/);
