@@ -31,5 +31,5 @@ export function createRound(cues, targetLetter, cardCount, random = Math.random)
 }
 
 export function freshState(sound = true, pool = []) {
-  return { screen: "home", sound, level: 0, completed: 0, usedLetters: [], targetPool: pool, target: null, completedGame: false };
+  return { screen: "home", sound, level: 0, completed: 0, usedLetters: [], targetPool: pool, target: null, completedGame: false, everCompleted: false };
 }

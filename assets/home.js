@@ -15,11 +15,11 @@ export function detectGameState(game, raw) {
   const value = parseSavedState(raw);
   if (!value) return "not-started";
   if (game === "nightRescue") {
-    if (value.finalComplete === true || (Array.isArray(value.completedLevels) && value.completedLevels.includes("hard"))) return "completed";
+    if (value.everCompleted === true || value.finalComplete === true || (Array.isArray(value.completedLevels) && value.completedLevels.includes("hard"))) return "completed";
     return value.version === 1 && ["easy", "medium", "hard"].includes(value.currentLevel) && isObject(value.progress) ? "in-progress" : "not-started";
   }
   if (game === "mysteryEgg") {
-    if (value.completedGame === true) return "completed";
+    if (value.everCompleted === true || value.completedGame === true) return "completed";
     return Number.isInteger(value.level) && value.level >= 0 && value.level <= 2 && Number.isFinite(value.completed) ? "in-progress" : "not-started";
   }
   if (game === "secretVault") {

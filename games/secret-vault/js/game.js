@@ -33,8 +33,14 @@ export function selectRun(content, random = Math.random) {
 }
 
 export function freshState(sound = true, run = { easy: [], medium: [], hard: [] }) {
-  return { version: 1, sound, screen: "start", level: "easy", run, completed: { easy: [], medium: [], hard: [] }, charges: 3, openedRings: [], finalComplete: false };
+  return { version: 1, sound, screen: "start", level: "easy", run, completed: { easy: [], medium: [], hard: [] }, charges: 3, openedRings: [], finalComplete: false, runComplete: false };
 }
+
+export function freshReplayState(sound, run, finalComplete) {
+  return { ...freshState(sound, run), finalComplete: Boolean(finalComplete), runComplete: false, screen: "play" };
+}
+
+export const restoredScreen = state => state.runComplete ? "final" : state.screen;
 
 export function applyWrong(state) {
   const next = { ...state, charges: Math.max(0, state.charges - 1) };

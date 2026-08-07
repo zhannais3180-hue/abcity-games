@@ -3,74 +3,54 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#10033f">
+  <meta name="theme-color" content="#071557">
   <meta name="description" content="Три игровые миссии курса чтения ABCity.">
   <title>ABCity — карта приключений</title>
-  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="/assets/home-progress.css">
 </head>
 <body>
   <a class="skip-link" href="#missions">К миссиям</a>
-  <header class="topbar">
-    <a class="brand" href="./" aria-label="ABCity, главная страница"><span>ABC</span>ity</a>
-    <button class="nav-button" id="how-open" type="button" aria-haspopup="dialog">Как играть</button>
-  </header>
+  <main class="world" id="city" aria-label="Ночной ABCity ждёт возвращения света">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="ABCity, главная страница"><span>A</span><span>B</span><span>C</span><b>ity</b></a>
+      <div class="progress-hud"><div><small>Выполнено миссий</small><strong id="summary" aria-live="polite">Выполнено 0 из 3 миссий</strong></div><div class="hud-stars" aria-hidden="true"><i>★</i><i>★</i><i>★</i></div></div>
+      <nav aria-label="Навигация"><a href="#missions"><span aria-hidden="true">▣</span>К миссиям</a><button id="how-open" type="button" aria-haspopup="dialog"><span aria-hidden="true">⚙</span>Как играть</button></nav>
+    </header>
 
-  <main>
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">КАРТА ЧИТАТЕЛЯ-ДЕТЕКТИВА</p>
-        <h1 id="hero-title">Верни свет<br><span>в ABCity!</span></h1>
-        <p class="story">ABCity потерял буквы и погрузился во тьму. Стань Читателем-детективом: пройди три миссии и верни городу буквы, свет и знания!</p>
-        <div class="hero-actions">
-          <a class="primary" id="start-link" href="games/night-rescue/">Начать приключение <span aria-hidden="true">→</span></a>
-          <p class="summary" id="summary" aria-live="polite">Выполнено 0 из 3 миссий</p>
-        </div>
+        <p class="eyebrow">Карта Читателя-детектива</p>
+        <h1 id="hero-title">Верни свет<br>в ABCity!</h1>
+        <p>ABCity потерял буквы и погрузился во тьму. Стань Читателем-детективом: пройди три миссии и верни городу буквы, свет и знания!</p>
+        <a class="primary" id="start-link" href="games/night-rescue/">Начать приключение <span aria-hidden="true">▶</span></a>
       </div>
-      <div class="city-wrap" id="city" aria-label="Ночной ABCity ждёт возвращения света">
-        <div class="moon">ABC</div><i class="star s1">✦</i><i class="star s2">✧</i><i class="star s3">✦</i>
-        <div class="skyline" aria-hidden="true">
-          <div class="tower t1"><i></i><i></i><i></i><i></i></div><div class="tower t2"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="tower t3"><b>ABCity</b><i></i><i></i><i></i><i></i></div><div class="tower t4"><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="tower t5"><i></i><i></i><i></i><i></i></div>
-        </div>
-        <div class="road"><span></span><span></span><span></span></div>
-      </div>
+      <aside class="hero-note"><strong>ABCity ждёт героя</strong><p>Пройди все миссии, зажги город и открой Таинственное яйцо!</p></aside>
     </section>
 
-    <section class="missions" id="missions" aria-labelledby="missions-title">
-      <div class="section-heading"><p class="eyebrow">ТРИ ЧАСТИ ОДНОГО ПРИКЛЮЧЕНИЯ</p><h2 id="missions-title">Выбери миссию</h2></div>
-      <div class="mission-grid">
-        <article class="mission-card night" data-game="nightRescue">
-          <div class="card-art" aria-hidden="true"><span class="letter upper">A</span><span class="letter lower">a</span><i>✦</i><i>✦</i></div>
-          <div class="card-number">МИССИЯ 1</div><h3>Ночная миссия</h3><h4>Зажги ABCity</h4>
-          <p>Сопоставляй большие и маленькие английские буквы.</p>
-          <div class="card-foot"><span class="status">Не начато</span><a href="games/night-rescue/">Играть <span aria-hidden="true">→</span></a></div>
-        </article>
-        <article class="mission-card egg" data-game="mysteryEgg">
-          <div class="card-art" aria-hidden="true"><div class="magic-egg">⌁<br>⌁</div><i>✦</i><i>✧</i></div>
-          <div class="card-number">МИССИЯ 2</div><h3>Таинственное яйцо</h3>
-          <p>Соединяй английскую букву с правильной картинкой-подсказкой.</p>
-          <div class="card-foot"><span class="status">Не начато</span><a href="games/mystery-egg/">Играть <span aria-hidden="true">→</span></a></div>
-        </article>
-        <article class="mission-card vault" data-game="secretVault">
-          <div class="card-art" aria-hidden="true"><div class="vault-door"><b>★</b></div></div>
-          <div class="card-number">МИССИЯ 3</div><h3>Секретное хранилище</h3>
-          <p>Решай задания с картинками, словами на слух и предложениями.</p>
-          <div class="card-foot"><span class="status">Не начато</span><a href="games/secret-vault/">Играть <span aria-hidden="true">→</span></a></div>
-        </article>
-      </div>
+    <section class="missions" id="missions" aria-label="Миссии ABCity">
+      <article class="mission-card night" data-game="nightRescue">
+        <div class="mission-art" role="img" aria-label="Ночная улица ABCity со светящимися буквами"></div>
+        <div class="mission-heading"><b>1</b><div><h2>Ночная миссия</h2><p>Зажги ABCity</p></div></div>
+        <div class="mission-body"><p>Сопоставляй большие и маленькие английские буквы.</p><div><span class="status">Не начато</span><a href="/games/night-rescue/">Играть <b aria-hidden="true">→</b></a></div></div>
+      </article>
+      <article class="mission-card egg" data-game="mysteryEgg">
+        <div class="mission-art" role="img" aria-label="Светящееся таинственное яйцо в волшебном саду"></div>
+        <div class="mission-heading"><b>2</b><div><h2>Таинственное яйцо</h2><p>Найди подсказку</p></div></div>
+        <div class="mission-body"><p>Соединяй английскую букву с правильной картинкой-подсказкой.</p><div><span class="status">Не начато</span><a href="/games/mystery-egg/">Играть <b aria-hidden="true">→</b></a></div></div>
+      </article>
+      <article class="mission-card vault" data-game="secretVault">
+        <div class="mission-art" role="img" aria-label="Магическое хранилище с золотыми кольцами"></div>
+        <div class="mission-heading"><b>3</b><div><h2>Секретное хранилище</h2><p>Открой кольца</p></div></div>
+        <div class="mission-body"><p>Решай задания с картинками, словами на слух и предложениями.</p><div><span class="status">Не начато</span><a href="/games/secret-vault/">Играть <b aria-hidden="true">→</b></a></div></div>
+      </article>
     </section>
 
-    <section class="victory" id="victory" hidden aria-live="polite">
-      <div class="badge"><span>★</span><b>ЧИТАТЕЛЬ-<br>ДЕТЕКТИВ</b></div>
-      <div><p class="eyebrow">ГОРОД СНОВА СИЯЕТ</p><h2>Все три миссии выполнены!</h2><p>Ты вернул буквы, свет и знания в ABCity. Отличная работа, детектив!</p><button class="secondary" id="replay" type="button">Сыграть снова</button></div>
-    </section>
+    <section class="victory" id="victory" hidden aria-live="polite"><div class="badge"><span>★</span><b>ЧИТАТЕЛЬ-<br>ДЕТЕКТИВ</b></div><div><p class="eyebrow">Город снова сияет</p><h2>Все три миссии выполнены!</h2><p>Ты вернул буквы, свет и знания в ABCity. Отличная работа, детектив!</p><button id="replay" type="button">Сыграть снова</button></div></section>
+    <footer><span aria-hidden="true">★</span><p><strong>Твоя цель</strong>Пройди все три миссии и верни свет всему ABCity!</p></footer>
   </main>
 
-  <dialog id="how-dialog" aria-labelledby="how-title">
-    <button class="dialog-close" id="how-close" type="button" aria-label="Закрыть">×</button>
-    <p class="eyebrow">ПАМЯТКА ДЕТЕКТИВА</p><h2 id="how-title">Как играть</h2>
-    <ol><li><b>1</b><span>Выбери миссию.</span></li><li><b>2</b><span>Прочитай инструкцию на русском.</span></li><li><b>3</b><span>Пройди все уровни.</span></li><li><b>4</b><span>Вернись на карту ABCity.</span></li><li><b>5</b><span>Выполни три миссии и зажги весь город!</span></li></ol>
-    <button class="primary dialog-ready" id="how-ready" type="button">Всё понятно!</button>
-  </dialog>
+  <dialog id="how-dialog" aria-labelledby="how-title"><button class="dialog-close" id="how-close" type="button" aria-label="Закрыть">×</button><p class="eyebrow">Памятка детектива</p><h2 id="how-title">Как играть</h2><ol><li><b>1</b><span>Выбери миссию.</span></li><li><b>2</b><span>Прочитай инструкцию на русском.</span></li><li><b>3</b><span>Пройди все уровни.</span></li><li><b>4</b><span>Вернись на карту ABCity.</span></li><li><b>5</b><span>Выполни три миссии и зажги весь город!</span></li></ol><button class="primary dialog-ready" id="how-ready" type="button">Всё понятно!</button></dialog>
   <script type="module" src="assets/home.js"></script>
 </body>
 </html>

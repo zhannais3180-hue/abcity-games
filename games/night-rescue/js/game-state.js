@@ -4,7 +4,7 @@ export function freshState(settings = {}) {
   return {
     version: 1, screen: "HOME", currentLevel: "easy", completedLevels: [],
     progress: { easy: 0, medium: 0, hard: 0 }, lives: 3, illumination: 0,
-    finalComplete: false, targetHistory: [], currentTask: null,
+    finalComplete: false, everCompleted: false, targetHistory: [], currentTask: null,
     settings: { music: true, sound: true, reducedMotion: matchMedia("(prefers-reduced-motion: reduce)").matches, ...settings }
   };
 }

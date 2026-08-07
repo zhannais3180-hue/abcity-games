@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { APPROVED_HARD, STORAGE_KEY, TASK_COUNTS, applyWrong, freshState, selectRun, shuffleEasyLetters, validateContent } from "./js/game.js";
+import { APPROVED_HARD, STORAGE_KEY, TASK_COUNTS, applyWrong, freshReplayState, freshState, restoredScreen, selectRun, shuffleEasyLetters, validateContent } from "./js/game.js";
 import { CUE_ART_IDS, cueArt } from "./js/cue-art.js";
 import { sceneArt } from "./js/scene-art.js";
 
@@ -41,8 +41,16 @@ state = applyWrong(state); assert.equal(state.charges, 2); assert.deepEqual(stat
 state = applyWrong(state); state = applyWrong(state); assert.equal(state.charges, 3); assert.equal(state.recharged, true); assert.deepEqual(state.completed.easy, [run.easy[0]]);
 state.openedRings.push("easy"); state = applyWrong(state); assert.deepEqual(state.openedRings, ["easy"]);
 assert.equal(STORAGE_KEY, "abcity.secretVault.v1");
+const replay = freshReplayState(true, run, true);
+assert.equal(replay.screen, "play"); assert.equal(replay.level, "easy"); assert.equal(replay.charges, 3);
+assert.deepEqual(replay.completed, { easy: [], medium: [], hard: [] }); assert.deepEqual(replay.openedRings, []);
+assert.equal(replay.finalComplete, true); assert.equal(replay.runComplete, false);
+const restoredReplay = JSON.parse(JSON.stringify(replay));
+assert.equal(restoredScreen(restoredReplay), "play"); assert.notEqual(restoredScreen(restoredReplay), "final");
 const source = fs.readFileSync(new URL("./js/main.js", import.meta.url), "utf8");
 assert.doesNotMatch(source, /setInterval|countdown/i); assert.match(source, /exactly|three choices|approved/i);
+assert.match(source, /id="replay-vault"[^>]*type="button"/); assert.match(source, /href="\/"/);
+assert.match(source, /querySelector\("#replay-vault"\)\?\.addEventListener\("click"/);
 const easySource = source.slice(source.indexOf("function easyScreen"), source.indexOf("function mediumScreen"));
 assert.doesNotMatch(easySource, /displayTarget|targetWord|data-cue-token/);
 assert.match(easySource, /data-letter-token/); assert.match(easySource, />Проверить</);

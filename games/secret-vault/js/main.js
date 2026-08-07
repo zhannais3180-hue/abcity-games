@@ -1,4 +1,4 @@
-import { STORAGE_KEY, LEVELS, TASK_COUNTS, applyWrong, freshState, selectRun, shuffle, shuffleEasyLetters, validateContent } from "./game.js";
+import { STORAGE_KEY, LEVELS, TASK_COUNTS, applyWrong, freshReplayState, freshState, restoredScreen, selectRun, shuffle, shuffleEasyLetters, validateContent } from "./game.js";
 import { AudioManager } from "./audio.js";
 import { cueArt } from "./cue-art.js";
 import { sceneArt } from "./scene-art.js";
@@ -22,7 +22,9 @@ function sanitize(raw) {
   const completed = Object.fromEntries(LEVELS.map(level => [level, Array.isArray(raw.completed?.[level]) ? raw.completed[level].filter(id => raw.run[level].includes(id)) : []]));
   const level = LEVELS.includes(raw.level) ? raw.level : "easy";
   const openedRings = Array.isArray(raw.openedRings) ? raw.openedRings.filter(x => LEVELS.includes(x)) : [];
-  return { ...freshState(sound, raw.run), ...raw, sound, level, completed, openedRings, charges: Math.max(1, Math.min(3, Number(raw.charges) || 3)), finalComplete: Boolean(raw.finalComplete) };
+  const finalComplete = Boolean(raw.finalComplete || raw.everCompleted);
+  const runComplete = raw.runComplete === undefined ? Boolean(finalComplete && LEVELS.every(item => openedRings.includes(item))) : Boolean(raw.runComplete);
+  return { ...freshState(sound, raw.run), ...raw, sound, level, completed, openedRings, charges: Math.max(1, Math.min(3, Number(raw.charges) || 3)), finalComplete, runComplete };
 }
 
 function controls(home = true) {
@@ -38,7 +40,7 @@ function rings(compact = false) {
   }).join("")}</div>`;
 }
 function startScreen() {
-  const unfinished = hadSave && runStarted() && !state.finalComplete;
+  const unfinished = hadSave && runStarted() && !state.runComplete;
   return `<section class="screen start">${controls(false)}<div class="hero-copy"><p class="eyebrow">ЧИТАТЕЛЬСКАЯ МИССИЯ ABCITY</p><h1>Секретное <span>хранилище</span></h1><p>В глубине ABCity три огромных кольца охраняют золотой значок детектива. Сможешь открыть их?</p><div class="actions"><button class="primary" data-action="${unfinished ? "continue" : "new"}">${unfinished ? "Продолжить расследование" : "Войти в хранилище"}</button>${unfinished ? '<button class="secondary" data-action="restart">Начать заново</button>' : ""}<button class="secondary" data-action="how">Как играть</button></div></div><div class="vault-hero"><div class="door"><i></i><i></i><i></i><strong>ABC</strong></div></div></section>`;
 }
 function howModal() {
@@ -73,7 +75,7 @@ function hardScreen(task) {
   return `<section class="screen gameplay">${gameHeader()}<div class="play-card hard-card"><p class="eyebrow">ПОСЛЕДНИЙ КОД-КАРТИНКА</p><h2>Какое предложение подходит?</h2><div class="hard-layout">${sceneArt(task.id)}<div class="sentence-list">${order.map(sentence => `<button class="sentence-card" data-answer="${escapeHtml(sentence)}">${escapeHtml(sentence)}</button>`).join("")}</div></div><p class="feedback">Читай внимательно, детектив.</p></div>${rings(true)}</section>`;
 }
 function rechargeScreen() { return `<section class="screen center recharge"><article class="panel"><div class="battery">⚡</div><p class="eyebrow">ЗАРЯД ЭНЕРГИИ</p><h2>Энергия детектива восстановлена!</h2><p>Выполненные задания сохранены. У тебя снова 3 заряда.</p><div class="charges big"><i class="charge on">◆</i><i class="charge on">◆</i><i class="charge on">◆</i></div><button class="primary" data-action="resume">Продолжить</button></article></section>`; }
-function finalScreen() { return `<section class="screen final">${controls(false)}<div class="open-vault"><div class="door-half left"></div><div class="reward"><div class="badge"><span>★</span><b>ДЕТЕКТИВ<br>ЧТЕНИЯ</b></div><p class="eyebrow">ВСЕ КОЛЬЦА ОТКРЫТЫ!</p><h1>Хранилище открыто!</h1><p>Ты отлично читаешь, детектив! ABCity сияет!</p><div class="actions"><button class="primary" data-action="new">Сыграть ещё раз</button><button class="secondary" data-action="to-start">На главный экран</button></div></div><div class="door-half right"></div></div>${rings()}</section>`; }
+function finalScreen() { return `<section class="screen final">${controls(false)}<div class="open-vault"><div class="door-half left"></div><div class="reward"><div class="badge"><span>★</span><b>ДЕТЕКТИВ<br>ЧТЕНИЯ</b></div><p class="eyebrow">ВСЕ КОЛЬЦА ОТКРЫТЫ!</p><h1>Хранилище открыто!</h1><p>Ты отлично читаешь, детектив! ABCity сияет!</p><div class="actions final-actions"><button id="replay-vault" class="primary" type="button">Сыграть ещё раз</button><a class="secondary" href="/">На главный экран</a></div></div><div class="door-half right"></div></div>${rings()}</section>`; }
 
 function render() {
   selected = state.cardOrder?.task === currentTask()?.id ? selected : [];
@@ -84,13 +86,14 @@ function render() {
   else if (state.screen === "final") app.innerHTML = finalScreen();
   else { const task = currentTask(); app.innerHTML = state.level === "easy" ? easyScreen(task) : state.level === "medium" ? mediumScreen(task) : hardScreen(task); }
   setTimeout(() => app.querySelector(".close,.primary,.replay,.letter-tile,.word-card,.sentence-card")?.focus(), 0);
+  app.querySelector("#replay-vault")?.addEventListener("click", () => { audio.tone("click"); newRun(true); }, { once: true });
 }
 
 function completeTask(task) {
   state.completed[state.level].push(task.id); selected = []; delete state.cardOrder; audio.tone("correct"); announce("Верно! Часть замка открыта.");
   if (state.completed[state.level].length === TASK_COUNTS[state.level]) {
     state.openedRings = [...new Set([...state.openedRings, state.level])]; audio.tone("unlock");
-    if (state.level === "hard") { state.finalComplete = true; state.screen = "final"; audio.tone("vault"); setTimeout(() => audio.tone("final"), 250); }
+    if (state.level === "hard") { state.finalComplete = true; state.runComplete = true; state.screen = "final"; audio.tone("vault"); setTimeout(() => audio.tone("final"), 250); }
     else { state.level = LEVELS[LEVELS.indexOf(state.level) + 1]; state.screen = "overview"; state.charges = 3; }
   }
   save(); setTimeout(() => { processing = false; render(); }, 650);
@@ -108,16 +111,18 @@ function chooseLetter(button) {
   if (processing || selected.includes(button.dataset.letterToken) || selected.length === 3) return;
   audio.tone("click"); selected.push(button.dataset.letterToken); render();
 }
-function newRun() { const sound = state?.sound !== false; state = freshState(sound, selectRun(content)); state.screen = "overview"; hadSave = true; selected = []; save(); render(); }
+function newRun(preserveCompletion = false) { const sound = state?.sound !== false, finalComplete = preserveCompletion && Boolean(state?.finalComplete); state = freshReplayState(sound, selectRun(content), finalComplete); hadSave = true; selected = []; processing = false; delete state.cardOrder; save(); render(); }
 
 app.addEventListener("click", event => {
   const letter = event.target.closest("[data-letter-token]"); if (letter) return chooseLetter(letter);
   const slot = event.target.closest("[data-slot-index]"); if (slot && !processing) { selected.splice(Number(slot.dataset.slotIndex), 1); audio.tone("click"); return render(); }
   const answerButton = event.target.closest("[data-answer]"); if (answerButton) return answer(answerButton.dataset.answer, answerButton);
-  const action = event.target.closest("[data-action]")?.dataset.action; if (!action || processing) return; audio.tone("click");
+  const action = event.target.closest("[data-action]")?.dataset.action; if (!action) return;
+  if (action === "new" && (state.finalComplete || state.runComplete)) { audio.tone("click"); newRun(true); return; }
+  if (processing) return; audio.tone("click");
   if (action === "sound") { state.sound = !state.sound; save(); render(); }
   else if (action === "new") newRun();
-  else if (action === "continue") { state.screen = state.finalComplete ? "final" : (state.screen === "start" ? "overview" : state.screen); if (state.completed[state.level].length < TASK_COUNTS[state.level] && state.screen !== "overview") state.screen = "play"; save(); render(); }
+  else if (action === "continue") { state.screen = state.runComplete ? "final" : (state.screen === "start" ? "overview" : state.screen); if (state.completed[state.level].length < TASK_COUNTS[state.level] && state.screen !== "overview") state.screen = "play"; save(); render(); }
   else if (action === "restart") { if (confirm("Начать расследование заново? Выполненные задания будут удалены.")) newRun(); }
   else if (action === "how") { modalReturn = state.screen; state.screen = "how"; render(); }
   else if (action === "close") { state.screen = modalReturn || "start"; render(); }
@@ -125,8 +130,8 @@ app.addEventListener("click", event => {
   else if (action === "check-easy") { processing = true; const task = currentTask(); const value = selected.map(token => token.split(":")[1]).join(""); if (value === task.targetWord) completeTask(task); else wrong(); }
   else if (action === "clear") { selected = []; render(); }
   else if (action === "replay") { if (!audio.speak(currentTask().audioWord)) app.querySelector(".speech-fallback").hidden = false; }
-  else if (action === "home") { if (!state.finalComplete && runStarted() && !confirm("Вернуться на главный экран? Расследование сохранится.")) return; state.screen = "start"; save(); render(); }
-  else if (action === "to-start") { state.screen = "start"; save(); render(); }
+  else if (action === "home") { if (!state.runComplete && runStarted() && !confirm("Вернуться на главный экран? Расследование сохранится.")) return; state.screen = "start"; save(); render(); }
+  else if (action === "to-start") { save(); window.location.assign("../../"); }
 });
 document.addEventListener("keydown", event => { if (event.key === "Escape" && state?.screen === "how") { state.screen = modalReturn || "start"; render(); } });
 
@@ -141,7 +146,7 @@ async function boot() {
     for (const cue of cues) cueArt(cue.letter, cue.cueWord);
     for (const task of hard.tasks) sceneArt(task.id);
     const raw = localStorage.getItem(STORAGE_KEY); hadSave = Boolean(raw); state = sanitize(raw ? JSON.parse(raw) : null);
-    if (hadSave && !state.finalComplete) state.screen = "start";
+    if (hadSave) state.screen = restoredScreen(state);
     render();
   } catch (error) {
     app.innerHTML = `<section class="screen center"><article class="panel error"><h1>Не удалось загрузить содержимое хранилища</h1><p>Игре нужны утверждённые файлы из <code>docs/content/</code>. Открой игру через локальный сервер репозитория.</p><pre>${escapeHtml(error.message)}</pre></article></section>`;

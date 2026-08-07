@@ -30,7 +30,7 @@ function mountMovement() {
   const area = document.querySelector("#letter-area"); if (!area) return;
   movement = new MovementController(area); movement.mount([...area.querySelectorAll(".letter-bubble")], state.settings.reducedMotion || state.screen !== "PLAYING");
 }
-function beginFresh() { const settings = state.settings; state = freshState(settings); state.screen = "LEVEL_INTRO"; stored = state; persist(); audio.unlock(); audio.syncMusic(); render(); }
+function beginFresh() { const settings = state.settings, everCompleted = Boolean(state.everCompleted || state.finalComplete); state = freshState(settings); state.everCompleted = everCompleted; state.screen = "LEVEL_INTRO"; stored = state; persist(); audio.unlock(); audio.syncMusic(); render(); }
 function setScreen(screen) { state.screen = screen; persist(); render(); }
 async function choose(button) {
   if (processing || state.screen !== "PLAYING" || button.disabled) return;
@@ -43,7 +43,7 @@ async function choose(button) {
     state.progress[state.currentLevel] += 1; updateIllumination(state); state.currentTask = null;
     if (state.progress[state.currentLevel] >= levelConfig(state).requiredMatches) {
       state.completedLevels = [...new Set([...state.completedLevels, state.currentLevel])];
-      if (state.currentLevel === "hard") { state.finalComplete = true; state.screen = "FINAL_CELEBRATION"; audio.play("final"); }
+      if (state.currentLevel === "hard") { state.finalComplete = true; state.everCompleted = true; state.screen = "FINAL_CELEBRATION"; audio.play("final"); }
       else { state.screen = "LEVEL_COMPLETE"; audio.play("level"); }
     }
   } else {

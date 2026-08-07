@@ -1,0 +1,85 @@
+.is-final {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  height: clamp(390px, 49vw, 535px);
+  border: 2px solid rgba(174, 243, 255, 0.58);
+  border-radius: 30px;
+  background: #071d48 url("assets/images/final-hatch.webp") center / cover no-repeat;
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.58),
+    inset 0 -40px 70px rgba(3, 12, 43, 0.18),
+    0 0 30px rgba(103, 237, 227, 0.24),
+    0 22px 42px rgba(2, 11, 37, 0.42);
+  animation: final-hatch-reveal 1.05s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.is-final::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 67%, rgba(255, 222, 116, 0.22), transparent 31%),
+    linear-gradient(180deg, transparent 68%, rgba(4, 15, 49, 0.18));
+  animation: final-hatch-glow 3.2s ease-in-out 1.05s infinite alternate;
+}
+
+.is-final > .egg,
+.is-final > .nest {
+  visibility: hidden;
+}
+
+.is-final .spark,
+.is-final .hatch-confetti {
+  z-index: 2;
+  text-shadow: 0 0 10px #fff, 0 0 24px #ffe98a;
+}
+
+.celebration::after,
+.hatch-confetti,
+.is-final .spark {
+  pointer-events: none;
+}
+
+.is-final .hatch-confetti {
+  bottom: 5%;
+  color: #fff3a4;
+  opacity: 0.82;
+}
+
+@keyframes final-hatch-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.975);
+    filter: brightness(1.35) saturate(0.82);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes final-hatch-glow {
+  from { opacity: 0.65; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 600px) {
+  .is-final {
+    height: clamp(330px, 68vw, 400px);
+    border-radius: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .is-final,
+  .is-final::after {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}

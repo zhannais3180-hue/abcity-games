@@ -1,0 +1,35 @@
+.final::before,
+.final::after,
+.final .open-vault::before,
+.final .open-vault::after,
+.final .door-half::before,
+.final .door-half::after,
+.final .badge::before,
+.final .badge::after {
+  pointer-events: none;
+}
+
+.final .reward {
+  position: relative;
+  z-index: 6;
+}
+
+.final .reward .final-actions {
+  position: relative;
+  z-index: 100;
+  pointer-events: auto;
+}
+
+.final .reward .final-actions button,
+.final .reward .final-actions a {
+  position: relative;
+  z-index: 101;
+  pointer-events: auto;
+}
+
+.final .reward .final-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}

@@ -4,6 +4,7 @@ import { cueArt } from "./cue-art.js";
 
 const app = document.querySelector("#app"), live = document.querySelector("#live");
 const EXPECTED = {a:"ant",b:"bus",c:"cat",d:"dog",e:"egg",f:"frog",g:"goat",h:"hat",i:"igloo",j:"jam",k:"king",l:"lion",m:"mouse",n:"nest",o:"octopus",p:"pen",q:"queen",r:"rabbit",s:"sun",t:"tiger",u:"umbrella",v:"van",w:"wagon",x:"xylophone",y:"yo-yo",z:"zebra"};
+const CUE_ASSETS = {a:"ant.webp",b:"bus.webp",c:"cat.webp",d:"dog.webp",e:"egg.webp",f:"frog.webp",g:"goat.webp",h:"hat.webp",i:"igloo.webp",j:"jam.webp",k:"king.webp",l:"lion.webp",m:"mouse.webp",n:"nest.webp",o:"octopus.webp",p:"pen.webp",q:"queen.webp",r:"rabbit.webp",s:"sun.webp",t:"tiger.webp",u:"umbrella.webp",v:"van.webp",w:"wagon.webp",x:"xylophone.webp",y:"yo-yo.webp",z:"zebra.webp"};
 let cues = [], processing = false, state, hadSave = false;
 const audio = new AudioManager(() => state?.sound !== false);
 const escape = value => String(value).replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
@@ -12,11 +13,11 @@ const announce = message => { live.textContent = ""; requestAnimationFrame(() =>
 
 function sanitize(raw) {
   const saved = raw && typeof raw === "object" ? raw : {};
-  return { ...freshState(saved.sound !== false, []), ...saved, level: Math.max(0, Math.min(2, Number(saved.level)||0)), completed: Math.max(0, Math.min(5, Number(saved.completed)||0)), usedLetters: Array.isArray(saved.usedLetters) ? saved.usedLetters.map(normalizeLetter).filter(x => EXPECTED[x]) : [], targetPool: Array.isArray(saved.targetPool) ? saved.targetPool.map(normalizeLetter).filter(x => EXPECTED[x]) : [] };
+  return { ...freshState(saved.sound !== false, []), ...saved, level: Math.max(0, Math.min(2, Number(saved.level)||0)), completed: Math.max(0, Math.min(5, Number(saved.completed)||0)), usedLetters: Array.isArray(saved.usedLetters) ? saved.usedLetters.map(normalizeLetter).filter(x => EXPECTED[x]) : [], targetPool: Array.isArray(saved.targetPool) ? saved.targetPool.map(normalizeLetter).filter(x => EXPECTED[x]) : [], everCompleted: Boolean(saved.everCompleted || saved.completedGame) };
 }
 function egg(stage = state.level, progress = state.completed, hatched = false) {
   const crack = Math.min(5, progress), classes = `egg stage-${stage} crack-${crack}${hatched ? " hatched" : ""}`;
-  return `<div class="egg-scene ${hatched ? "is-final" : ""}" aria-label="${hatched ? "Из яйца вылупилось дружелюбное волшебное существо" : "Таинственное яйцо"}"><i class="spark s1">✦</i><i class="spark s2">✧</i><div class="${classes}"><span class="cracks">⌁<br>ϟ</span>${hatched ? '<div class="creature"><b>•ᴗ•</b><i></i></div>' : ""}</div><div class="nest"></div></div>`;
+  return `<div class="egg-scene ${hatched ? "is-final" : ""}" aria-label="${hatched ? "Из яйца вылупилось дружелюбное волшебное существо" : "Таинственное яйцо"}"><div class="garden-backdrop" aria-hidden="true"><i></i><i></i><i></i><i></i></div><i class="spark s1">✦</i><i class="spark s2">✧</i><div class="${classes}"><span class="cracks">⌁<br>ϟ</span>${hatched ? '<div class="shell-top" aria-hidden="true"></div><div class="creature"><i class="ear ear-left"></i><i class="ear ear-right"></i><i class="wing wing-left"></i><i class="wing wing-right"></i><span class="creature-face"><i class="eye"></i><i class="eye"></i><b></b></span><em>ABC</em></div><div class="shell-half shell-left" aria-hidden="true"></div><div class="shell-half shell-right" aria-hidden="true"></div>' : ""}</div><div class="nest"></div>${hatched ? '<div class="hatch-confetti" aria-hidden="true">✦ ● ✧ ★ ● ✦</div>' : ""}</div>`;
 }
 function controls() { return `<div class="corner"><button class="icon" data-action="sound" aria-label="${state.sound ? "Выключить" : "Включить"} звук">${state.sound ? "🔊" : "🔇"}</button><button class="icon" data-action="reset" aria-label="Начать расследование заново">↻</button></div>`; }
 function home() {
@@ -29,7 +30,7 @@ function intro() {
   return `<section class="screen center">${controls()}<article class="panel intro"><p class="eyebrow">УРОВЕНЬ ${state.level+1} ИЗ 3</p><h2>${level.name}</h2>${egg(state.level, state.completed)}<div class="stats"><span><b>${level.cards}</b> ${plural(level.cards, "карточка", "карточки", "карточек")}</span><span>Нужно найти <b>5</b> подсказок</span></div><p>${state.level===0?"Скоро появятся первые трещинки.":state.level===1?"Яйцо начинает качаться!":"Яйцо светится от волшебства!"}</p><button class="primary" data-action="play">Начать уровень</button></article></section>`;
 }
 function plural(number, one, few, many) { const mod100 = number % 100, mod10 = number % 10; return mod100 >= 11 && mod100 <= 14 ? many : mod10 === 1 ? one : mod10 >= 2 && mod10 <= 4 ? few : many; }
-function card(cue) { return `<button class="picture-card" data-letter="${cue.letter}" aria-label="Картинка: ${escape(cue.cueWord)}">${cueArt(cue.letter, cue.cueWord)}</button>`; }
+function card(cue) { const letter=normalizeLetter(cue.letter); return `<button class="picture-card" data-letter="${cue.letter}" aria-label="Картинка: ${escape(cue.cueWord)}"><img class="cue-image" src="assets/cues/${CUE_ASSETS[letter]}" alt="" draggable="false"></button>`; }
 function play() {
   const level = LEVELS[state.level], cards = createRound(cues, normalizeLetter(state.target), level.cards);
   return `<section class="screen game"><header><button class="icon" data-action="home" aria-label="На главный экран">⌂</button><div><small>УРОВЕНЬ ${state.level+1} · ${level.name.toUpperCase()}</small><b>${state.completed}/5 подсказок</b></div><div class="bar" aria-label="Прогресс: ${state.completed} из 5 подсказок"><i style="width:${state.completed*20}%"></i></div><button class="icon" data-action="sound" aria-label="${state.sound?"Выключить":"Включить"} звук">${state.sound?"🔊":"🔇"}</button></header><div class="game-layout"><aside class="target"><span>НАЙДИ КАРТИНКУ ДЛЯ БУКВЫ</span><strong>${state.target}</strong><p>Какая картинка начинается с этой буквы?</p>${egg(state.level,state.completed)}</aside><div><div class="card-grid cards-${level.cards}" aria-label="Варианты картинок">${cards.map(card).join("")}</div><p id="feedback" class="feedback" aria-hidden="true">Выбери картинку-подсказку!</p></div></div></section>`;
@@ -45,13 +46,13 @@ async function choose(button) {
   if (normalizeLetter(chosen) !== correct) { button.classList.add("wrong"); button.disabled=true; document.querySelector("#feedback").textContent="Попробуй ещё раз: выбери другую картинку."; announce("Попробуй ещё раз: выбери другую картинку."); audio.play("wrong"); setTimeout(()=>{button.classList.remove("wrong");button.disabled=false;processing=false;},650); return; }
   button.classList.add("correct"); document.querySelector("#feedback").textContent="Верно! Яйцо получило энергию!"; announce("Верно! Яйцо получило энергию."); audio.play("correct");
   await new Promise(r=>setTimeout(r,700)); state.completed++; state.target=null; audio.play("crack");
-  if(state.completed===5){state.screen=state.level===2?"final":"level-complete";if(state.level===2)state.completedGame=true;audio.play(state.level===2?"final":"level");} else {newTarget();}
+  if(state.completed===5){state.screen=state.level===2?"final":"level-complete";if(state.level===2){state.completedGame=true;state.everCompleted=true;}audio.play(state.level===2?"final":"level");} else {newTarget();}
   save(); processing=false;render();
 }
 app.addEventListener("click", e=>{
   const picture=e.target.closest("[data-letter]"); if(picture){choose(picture);return;} const action=e.target.closest("[data-action]")?.dataset.action;if(!action)return;audio.play("click");
   if(action==="sound"){state.sound=!state.sound;save();render();return;}
-  if(action==="start"){const sound=state.sound;state=freshState(sound,createTargetPool(cues));state.screen="intro";hadSave=true;save();}
+  if(action==="start"){const sound=state.sound,everCompleted=Boolean(state.everCompleted||state.completedGame);state=freshState(sound,createTargetPool(cues));state.everCompleted=everCompleted;state.screen="intro";hadSave=true;save();}
   else if(action==="continue") state.screen=state.target?"play":"intro";
   else if(action==="how") state.screen="how"; else if(action==="close") state.screen="home";
   else if(action==="play"){if(!state.target)newTarget();state.screen="play";save();}
