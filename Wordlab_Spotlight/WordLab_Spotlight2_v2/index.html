@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#267fa9">
+<meta name="description" content="Игровой тренажёр Spotlight 2 для запоминания написания пяти английских слов по памяти.">
+<title>Word Lab — Spotlight 2 · Пишу по памяти</title>
+<style>
+:root{--blue:#237da5;--deep:#1b658c;--ink:#253d4b;--muted:#607785;--cream:#fff4d6;--line:#d3e3ed;--green:#23794e;--coral:#b54739}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 0 10%,#d9f1fc,transparent 33%),radial-gradient(circle at 100% 100%,#fff0c9,transparent 30%),#f5f9fc;font:16px 'Trebuchet MS',Arial,sans-serif;color:var(--ink)}button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:default}button:focus-visible,input:focus-visible{outline:3px solid #ffc04e;outline-offset:3px}
+.wrap{max-width:980px;margin:auto;padding:20px 14px 35px}.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:20px}.logo{font-size:25px;font-weight:900}.logo span{background:#ffd363;border-radius:12px;padding:8px;margin-right:8px}.small{font-size:12px;color:var(--muted)}.hero{background:linear-gradient(110deg,#267fa9,#1f648f);border-radius:24px;padding:23px 28px;color:#fff}.hero h1{margin:5px 0;font-size:clamp(28px,5vw,42px)}.hero p{margin:7px 0}.steps{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px;margin:18px 0}.step{padding:9px 3px;background:#fff;border:1px solid var(--line);border-radius:13px;text-align:center;font-size:11px;font-weight:900;color:var(--muted);min-width:0}.step b{display:block;background:#eaf0f4;border-radius:50%;width:24px;height:24px;line-height:24px;margin:0 auto 5px}.step.active{border:2px solid var(--blue);color:var(--blue)}.step.active b{background:var(--blue);color:#fff}.step.done{background:#e5f7eb;color:var(--green)}.step.done b{background:#b6e5c6}.panel{padding:clamp(17px,3vw,32px);background:white;border:1px solid var(--line);border-radius:24px;min-height:360px;box-shadow:0 13px 30px #305c7a12}.heading{text-align:center;margin:0 0 20px}.heading h2{font-size:clamp(25px,4vw,32px);margin:6px 0}.heading p{color:var(--muted);margin:0 auto;max-width:650px;line-height:1.5}.tag{display:inline-block;background:var(--cream);color:#856018;border-radius:20px;padding:7px 14px;font-size:12px;font-weight:900}
+.cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.card{padding:10px;border:2px solid var(--line);border-radius:19px;text-align:center}.pic{max-width:100%;width:100%;height:138px}.name{font-weight:900;font-size:clamp(17px,2vw,23px);overflow-wrap:anywhere}.translation{font-size:13px;color:var(--muted);margin:5px}.sound{background:#e9f6ff;color:#145b84;border:1px solid #b6dce9;border-radius:12px;padding:10px 13px;font-size:14px;font-weight:900;margin-top:8px}.buttons{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:22px}.primary{background:var(--blue);color:white;border:0;border-radius:14px;padding:13px 23px;min-height:47px;font-weight:900;box-shadow:0 4px #165575}.primary:hover:not(:disabled){background:#195d82}.secondary{background:white;color:var(--blue);border:2px solid #badce9;border-radius:13px;padding:10px 16px;min-height:45px;font-weight:900}.secondary:hover:not(:disabled){background:#eaf6ff}.secondary:disabled{opacity:.55}
+.matching{display:grid;grid-template-columns:1fr 1fr;gap:15px;max-width:650px;margin:auto}.matchcol{display:grid;gap:9px}.coltitle{text-align:center;font-size:12px;font-weight:900;color:var(--muted)}.tile{width:100%;min-height:93px;background:#fff;border:2px solid var(--line);border-radius:16px;padding:6px;font-size:23px;font-weight:900;color:var(--ink)}.tile .pic{height:84px}.tile.selected{background:#e8f5ff;border-color:var(--blue)}.tile.matched{background:#e6f7ea;border-color:#9bd5ae;color:var(--green)}.tile:not(:disabled):hover{border-color:var(--blue)}
+.meter{max-width:530px;margin:0 auto 20px}.metertext{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;font-weight:900;margin-bottom:7px}.track{height:10px;border-radius:20px;background:#e8f0f4;overflow:hidden}.fill{height:100%;background:#f3bd56;transition:width .3s}.practice{max-width:650px;margin:auto;text-align:center}.practice .pic{height:165px;max-width:230px}.prompt{font-weight:900;font-size:clamp(24px,5vw,36px);background:#eaf6ff;border-radius:18px;padding:20px;margin:10px 0 16px}.options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.option{min-height:70px;border:2px solid var(--line);border-radius:15px;background:#fff;font-size:clamp(17px,2.8vw,23px);font-weight:900;color:var(--ink)}.option.correct{background:#e2f7e9;border-color:#87c9a0}.option.wrong{background:#fff0ed;border-color:#f1afa2}
+.ru{display:inline-block;background:#eaf6ff;border-radius:20px;padding:8px 16px;font-size:20px;font-weight:900;margin:5px 0 14px}.letters{display:flex;justify-content:center;gap:5px;flex-wrap:wrap;margin:9px auto 13px}.letter{width:clamp(28px,5vw,40px);height:46px;border:2px solid #c8dce7;border-radius:9px;display:grid;place-items:center;font-size:23px;font-weight:900}.letter.blank{background:#fff0c9;border:2px dashed #dbaa3e}.letter.hinted{background:#e0f2ff;color:var(--deep);border-color:#8ebddd}.letter.inserted{background:#e5f8ec;border-color:#8dcda6;color:var(--green);animation:pop-letter .28s ease-out both}.letter.space{border:0;width:10px}.answer{display:block;width:min(420px,100%);min-height:54px;margin:12px auto;border:2px solid #b7d3e2;border-radius:13px;padding:10px;font-size:23px;font-weight:900;text-align:center;color:var(--ink)}.feedback{font-weight:900;color:var(--green);margin:12px}.feedback.caution{color:#9c6924}.muted{font-size:13px;color:var(--muted);line-height:1.45}.hintline{margin-top:8px;font-size:14px;font-weight:900;color:var(--deep)}.flying-letter{position:fixed;display:grid;place-items:center;width:30px;height:42px;background:#ffe8a0;border:2px solid #d8a138;border-radius:9px;color:var(--ink);font-size:23px;font-weight:900;z-index:40;pointer-events:none;transition:transform 650ms cubic-bezier(.2,.8,.2,1),opacity 650ms ease;box-shadow:0 6px 15px #394d6629}
+@keyframes pop-letter{0%{transform:scale(.7)}70%{transform:scale(1.14)}100%{transform:scale(1)}}
+.memory-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;max-width:830px;margin:auto}.memory-card{aspect-ratio:1/1.05;min-height:115px;width:100%;position:relative;border:0;padding:0;background:transparent;perspective:600px;border-radius:17px}.memory-inner{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .42s}.memory-card.flipped .memory-inner{transform:rotateY(180deg)}.memory-front,.memory-back{position:absolute;inset:0;border-radius:17px;display:flex;align-items:center;justify-content:center;backface-visibility:hidden;-webkit-backface-visibility:hidden}.memory-front{background:linear-gradient(145deg,#2586b5,#246e96);color:white;border:3px solid #1e6690;font-size:clamp(32px,5vw,51px);font-weight:900;box-shadow:0 6px 0 #c7dfe9}.memory-front:after{content:'✦';position:absolute;top:9px;right:12px;font-size:14px;color:#ffda6b}.memory-back{transform:rotateY(180deg);border:3px solid #b9d9e6;background:#fff;overflow:hidden;padding:6px;color:var(--ink);font-weight:900;font-size:clamp(14px,2.6vw,23px);overflow-wrap:anywhere;text-align:center}.memory-back .pic{height:96%;max-height:145px}.memory-card.paired .memory-back{background:#e5f7eb;border-color:#8ccca4}.memory-card:disabled{opacity:1}.memory-card:not(:disabled):hover .memory-front{background:#1c709e}.memory-success{text-align:center;font-weight:900;color:var(--green);margin:14px 0 0}
+.bingo-board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:530px;margin:15px auto}.bingo-cell{min-height:96px;border-radius:17px;background:#fff;border:3px solid #c8dfe9;color:var(--ink);font-weight:900;font-size:clamp(18px,3vw,25px);position:relative;padding:10px;overflow-wrap:anywhere}.bingo-cell.marked{background:#e8f8ef;color:var(--green);border-color:#7fc99c}.bingo-cell.marked:after{content:'✓';position:absolute;top:4px;right:9px;color:var(--green);font-size:22px}.bingo-cell.linewin{background:#fff0be;box-shadow:inset 0 0 0 2px #edb750}.bingo-cell:not(:disabled):hover{border-color:var(--blue)}.bingo-instruction{text-align:center;margin:0 auto;max-width:580px}.bingo-caller{display:flex;align-items:center;justify-content:center;gap:14px;background:#fff4d6;border:2px solid #f0d48f;border-radius:19px;padding:15px;margin:12px auto 12px;max-width:510px;flex-wrap:wrap}.bingo-caller strong{font-size:clamp(22px,4vw,31px)}.bingo-chant{font-weight:900;font-size:clamp(24px,5vw,36px);color:#176c9a;text-align:center;margin:10px auto}.bingo-counter{text-align:center;color:var(--muted);font-size:13px;font-weight:900}
+.dictlist{display:grid;gap:10px;max-width:680px;margin:18px auto}.dictrow{display:grid;grid-template-columns:38px 1fr 1.3fr;align-items:center;gap:10px;border:2px solid var(--line);border-radius:15px;padding:10px 14px}.dictrow.ok{background:#eaf9ee;border-color:#a1d9b6}.dictrow.no{background:#fff4f0;border-color:#e9b2a3}.num{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;font-weight:900;background:#e9f6ff}.dictrow label{font-weight:900}.dictrow input{min-width:0;width:100%;border:2px solid #c5dbe5;border-radius:10px;padding:10px;font-size:19px;font-weight:900}.correction{grid-column:2 / 4;font-size:13px;font-weight:900;color:#a44436}.correction.good{color:#26794c}.result{max-width:680px;margin:16px auto;padding:20px;border-radius:18px;border:2px solid #f2d796;background:#fff9e9;text-align:center}.result h3{margin:0 0 7px;font-size:27px}.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:22px;line-height:1.7}.footer strong{color:var(--blue)}.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);max-width:90%;padding:13px 18px;background:#233e4e;color:#fff;border-radius:13px;font-weight:900;text-align:center;opacity:0;pointer-events:none;transition:.2s;z-index:90}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:730px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.cards .card:last-child{grid-column:1 / -1;max-width:240px;margin:auto;width:100%}.options{grid-template-columns:1fr}.option{min-height:54px}.memory-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.memory-card{min-height:92px}.steps{gap:3px}.step{font-size:9px}.step b{width:22px;height:22px;line-height:22px}}
+@media(max-width:450px){.step{font-size:9px;padding:7px 2px;letter-spacing:-.35px}.steps{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}.step b{display:inline-block;margin:0 3px 0 0;vertical-align:middle}.tile{min-height:74px;font-size:18px}.tile .pic{height:65px}.matching{gap:9px}.memory-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.memory-card{min-height:94px}.memory-back .pic{height:92%}.bingo-cell{min-height:78px;font-size:16px}.dictrow{grid-template-columns:30px 1fr 1.15fr;gap:6px;padding:8px}.num{width:29px;height:29px}.dictrow input{font-size:15px;padding:8px}.hero{padding:18px}.logo{font-size:19px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div class="logo"><span>✎</span>Word Lab <div class="small" style="margin:9px 0 0 48px">SPOTLIGHT 2 · SPELLING GAME</div></div><button type="button" class="secondary" id="restart">↻ Начать заново</button></header>
+<section class="hero"><small>5 WORDS · 8 STEPS</small><h1>Пишу по памяти! ✨</h1><p>Послушай, поиграй, запомни буквы и напиши диктант.</p></section>
+<nav class="steps" id="steps" aria-label="Этапы"></nav>
+<main class="panel" id="game" aria-live="polite"></main>
+<footer class="footer">Лексика учебника Spotlight 2 · Озвучка через браузер<br><strong>english_with_a_fat_cat_^.^_</strong></footer>
+</div><div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+'use strict';
+const words=[
+ {id:'table',en:'table',ru:'стол',holes:[1,3]},
+ {id:'chair',en:'chair',ru:'стул',holes:[1,3]},
+ {id:'bed',en:'bed',ru:'кровать',holes:[1]},
+ {id:'treehouse',en:'tree house',ru:'домик на дереве',holes:[1,6,8]},
+ {id:'radio',en:'radio',ru:'радио',holes:[1,3]}
+];
+const stageNames=['Слушаю','Пары','Memory','Quiz','Bingo','Буквы','Пишу','Диктант'];
+const game=document.querySelector('#game');
+const lookup=id=>words.find(w=>w.id===id);
+const shuffled=arr=>{let a=[...arr];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const norm=v=>String(v||'').trim().toLowerCase().replace(/\s+/g,' ');
+const escapeHTML=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const art={table:'<rect x="57" y="82" width="14" height="60" rx="5" fill="#986247"/><rect x="151" y="82" width="14" height="60" rx="5" fill="#986247"/><rect x="35" y="62" width="150" height="29" rx="10" fill="#c1875d"/><rect x="35" y="60" width="150" height="18" rx="9" fill="#e3ac7a"/>',chair:'<rect x="60" y="24" width="98" height="99" rx="15" fill="#b37e59"/><rect x="75" y="35" width="69" height="54" rx="9" fill="#f2c596"/><rect x="51" y="97" width="120" height="20" rx="8" fill="#cd9166"/><rect x="60" y="113" width="15" height="36" rx="4" fill="#a36c4b"/><rect x="151" y="113" width="15" height="36" rx="4" fill="#a36c4b"/>',bed:'<rect x="30" y="90" width="160" height="49" rx="10" fill="#ee987d"/><rect x="28" y="100" width="17" height="51" rx="5" fill="#8d74a4"/><rect x="174" y="100" width="16" height="51" rx="5" fill="#8d74a4"/><rect x="44" y="63" width="136" height="49" rx="15" fill="#85bde8"/><rect x="48" y="65" width="58" height="25" rx="11" fill="#fff8e8"/><rect x="28" y="48" width="17" height="85" rx="7" fill="#947bad"/>',treehouse:'<path d="M95 146V67h30v79" fill="#a67150"/><path d="M112 110L70 70M112 103l44-48" stroke="#a67150" stroke-width="13"/><circle cx="77" cy="51" r="30" fill="#8ac58c"/><circle cx="132" cy="44" r="41" fill="#81bf86"/><circle cx="162" cy="77" r="29" fill="#a4d6a3"/><path d="M67 71l46-39 46 39v53H67z" fill="#f0b479" stroke="#9e7351" stroke-width="3"/><path d="M62 70l51-42 51 42" stroke="#a36c71" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="92" y="84" width="41" height="39" rx="5" fill="#9ddbeb" stroke="#fff8e8" stroke-width="6"/><path d="M112 86v34M94 102h37" stroke="#fff8e8" stroke-width="4"/><path d="M75 123v30M93 123v30M73 134h22M73 144h22" stroke="#ddaa7a" stroke-width="5"/>',radio:'<path d="M60 51l40-38" stroke="#6e9cba" stroke-width="5" stroke-linecap="round"/><rect x="37" y="49" width="148" height="90" rx="17" fill="#e6a06a" stroke="#b67850" stroke-width="4"/><rect x="52" y="63" width="76" height="60" rx="12" fill="#fff1d4"/><circle cx="90" cy="93" r="26" fill="#7d9cac"/><circle cx="90" cy="93" r="20" fill="#aec6cf"/><path d="M75 77l30 32M75 93h30M75 109l30-32" stroke="#7899ab" stroke-width="3"/><rect x="138" y="65" width="33" height="15" rx="7" fill="#fff1d4"/><circle cx="151" cy="104" r="12" fill="#fff1d4" stroke="#b67850" stroke-width="3"/><circle cx="172" cy="105" r="5" fill="#fff1d4"/>'};
+function picture(id){return `<svg class="pic" viewBox="0 0 220 170" role="img" aria-label="${escapeHTML(lookup(id).ru)}"><rect x="8" y="8" width="204" height="150" rx="26" fill="#e9f7fc"/><circle cx="173" cy="37" r="14" fill="#ffe7aa"/><ellipse cx="110" cy="150" rx="70" ry="10" fill="#c3e4eb"/>${art[id]}</svg>`;}
+let stage=0, runId=0,toastTimer=0;
+let pictureOrder=[],wordOrder=[],matched=new Set(),selected=null;
+let memoryDeck=[],memoryOpen=[],memoryMatched=new Set(),memoryLocked=false,memoryTimer=null;
+let quizOrder=[],quizIndex=0,quizOptions=[],quizSolved=false,quizWrong='';
+let bingoBoard=[],bingoCalls=[],bingoIndex=0,bingoMarked=new Set(),bingoLine=[];
+let holesOrder=[],holesIndex=0,holesSolved=false,holesSkipped=new Set(),holesRevealed=new Set(),holesWasSkipped=false,holesAnimating=false;
+let writeOrder=[],writeIndex=0,writeSolved=false,writeErrors=0,writeHint=false;
+let dictOrder=[],dictAnswers={},dictChecked=false,teacher=false;
+function notify(t){clearTimeout(toastTimer);let el=document.getElementById('toast');el.textContent=t;el.classList.add('show');toastTimer=setTimeout(()=>el.classList.remove('show'),2400);}
+function speak(id){if(!('speechSynthesis' in window)){notify('Звук недоступен в этом браузере');return;}try{speechSynthesis.cancel();let utter=new SpeechSynthesisUtterance(lookup(id).en);utter.lang='en-GB';utter.rate=.82;let voices=speechSynthesis.getVoices();utter.voice=voices.find(v=>v.lang.toLowerCase()==='en-gb')||voices.find(v=>v.lang.toLowerCase().startsWith('en'))||null;speechSynthesis.speak(utter);}catch(e){notify('Не удалось включить озвучку');}}
+function head(title,description){return `<div class="heading"><span class="tag">Этап ${stage+1} из ${stageNames.length}</span><h2>${title}</h2><p>${description}</p></div>`;}
+function button(label,action,cls='primary',more=''){return `<button type="button" class="${cls}" data-action="${action}" ${more}>${label}</button>`;}
+function meter(n,total=5){return `<div class="meter"><div class="metertext"><span>Твой прогресс</span><span>${n} из ${total}</span></div><div class="track"><div class="fill" style="width:${100*n/total}%"></div></div></div>`;}
+function steps(){document.querySelector('#steps').innerHTML=stageNames.map((s,i)=>`<div class="step ${i===stage?'active':i<stage?'done':''}" ${i===stage?'aria-current="step"':''}><b>${i<stage?'✓':i+1}</b>${s}</div>`).join('');}
+function resetTransient(){runId++;if(memoryTimer){clearTimeout(memoryTimer);memoryTimer=null;}document.querySelectorAll('.flying-letter').forEach(el=>el.remove());}
+function initStage(){
+ if(stage===1){
+  pictureOrder=shuffled(words.map(w=>w.id));
+  // Независимый порядок и гарантированно ни одной готовой пары в одной строке.
+  for(let tries=0;tries<100;tries++){wordOrder=shuffled(words.map(w=>w.id));if(wordOrder.every((id,i)=>id!==pictureOrder[i]))break;}
+  if(wordOrder.some((id,i)=>id===pictureOrder[i]))wordOrder=pictureOrder.slice(1).concat(pictureOrder[0]);
+  matched=new Set();selected=null;
+ }
+ if(stage===2){memoryDeck=shuffled(words.flatMap(w=>[{id:w.id,type:'picture'},{id:w.id,type:'word'}]));memoryOpen=[];memoryMatched=new Set();memoryLocked=false;}
+ if(stage===3){quizOrder=shuffled(words.map(w=>w.id));quizIndex=0;initQuestion();}
+ if(stage===4){
+  bingoBoard=shuffled(words.map(w=>w.id).concat(shuffled(words.map(w=>w.id)).slice(0,4)));
+  bingoCalls=shuffled(words.map(w=>w.id));bingoIndex=0;bingoMarked=new Set();bingoLine=[];
+ }
+ if(stage===5){holesOrder=shuffled(words.map(w=>w.id));holesIndex=0;holesSolved=false;holesSkipped=new Set();holesRevealed=new Set();holesWasSkipped=false;holesAnimating=false;}
+ if(stage===6){writeOrder=shuffled(words.map(w=>w.id));writeIndex=0;writeSolved=false;writeErrors=0;writeHint=false;}
+ if(stage===7){dictOrder=shuffled(words.map(w=>w.id));dictAnswers={};dictChecked=false;teacher=false;}
+}
+function next(){resetTransient();stage=Math.min(7,stage+1);initStage();render();window.scrollTo({top:0,behavior:'smooth'});}
+function startOver(){resetTransient();stage=0;render();}
+function initQuestion(){let id=quizOrder[quizIndex];quizOptions=shuffled([id,...shuffled(words.map(w=>w.id).filter(x=>x!==id)).slice(0,2)]);quizSolved=false;quizWrong='';}
+function render(){
+ steps();
+ if(stage===0)return renderLearn();
+ if(stage===1)return renderMatching();
+ if(stage===2)return renderMemory();
+ if(stage===3)return renderQuiz();
+ if(stage===4)return renderBingo();
+ if(stage===5)return renderMissing();
+ if(stage===6)return renderWrite();
+ if(stage===7)return renderDictation();
+}
+function renderLearn(){game.innerHTML=head('Посмотри и послушай','Нажимай на 🔊, повторяй слова и запоминай, как они пишутся.')+`<div class="cards">${words.map(w=>`<div class="card">${picture(w.id)}<div class="name">${w.en}</div><div class="translation">${w.ru}</div><button class="sound" data-action="speak" data-id="${w.id}">🔊 Послушать</button></div>`).join('')}</div><div class="buttons">${button('Я запомнила! Дальше →','next')}</div>`;}
+function renderMatching(){game.innerHTML=head('Найди пару!','Картинки и слова перемешаны. Нажми на картинку, затем на подходящее английское слово.')+meter(matched.size)+`<div class="matching"><div class="matchcol"><div class="coltitle">КАРТИНКИ</div>${pictureOrder.map(id=>`<button class="tile ${selected===id?'selected':''} ${matched.has(id)?'matched':''}" data-action="select-picture" data-id="${id}" aria-label="Картинка: ${lookup(id).ru}" ${matched.has(id)?'disabled':''}>${picture(id)}</button>`).join('')}</div><div class="matchcol"><div class="coltitle">СЛОВА (ВРАЗБРОС)</div>${wordOrder.map(id=>`<button class="tile ${matched.has(id)?'matched':''}" data-action="select-word" data-id="${id}" ${matched.has(id)?'disabled':''}>${lookup(id).en}</button>`).join('')}</div></div>${matched.size===5?`<div class="buttons">${button('Все пары найдены! Memory →','next')}</div>`:''}`;}
+function renderMemory(){
+ const complete=memoryMatched.size===5;
+ game.innerHTML=head('Memory — найди одинаковые пары','Переверни две карточки. Найди картинку и её английское слово.')+meter(memoryMatched.size)+`<div class="memory-grid">${memoryDeck.map((c,i)=>{
+  const open=memoryMatched.has(c.id)||memoryOpen.includes(i);
+  return `<button type="button" class="memory-card ${open?'flipped':''} ${memoryMatched.has(c.id)?'paired':''}" data-action="memory-flip" data-index="${i}" aria-label="Карточка ${i+1}${open?': '+(c.type==='picture'?lookup(c.id).ru:lookup(c.id).en):', закрыта'}" aria-pressed="${open}" ${memoryMatched.has(c.id)||memoryLocked?'disabled':''}><span class="memory-inner"><span class="memory-front" aria-hidden="true">?</span><span class="memory-back" aria-hidden="true">${c.type==='picture'?picture(c.id):escapeHTML(lookup(c.id).en)}</span></span></button>`;
+ }).join('')}</div>${complete?`<p class="memory-success">⭐ Все 5 пар найдены!</p><div class="buttons">${button('Дальше: Quiz →','next')}</div>`:''}`;
+}
+function flipMemory(index){
+ if(memoryLocked||memoryMatched.size===5||index<0||index>=memoryDeck.length||memoryOpen.includes(index)||memoryMatched.has(memoryDeck[index].id))return;
+ memoryOpen.push(index);
+ if(memoryOpen.length===2){
+  const [a,b]=memoryOpen.map(i=>memoryDeck[i]);
+  if(a.id===b.id&&a.type!==b.type){memoryMatched.add(a.id);memoryOpen=[];renderMemory();notify('Отлично! Пара найдена ⭐');}
+  else{
+   memoryLocked=true;renderMemory();let token=runId;
+   memoryTimer=setTimeout(()=>{if(token!==runId)return;memoryOpen=[];memoryLocked=false;memoryTimer=null;renderMemory();},1050);
+  }
+ }else renderMemory();
+}
+function renderQuiz(){let w=lookup(quizOrder[quizIndex]);game.innerHTML=head('Quiz — выбери слово','Как это пишется по-английски?')+meter(quizIndex+(quizSolved?1:0))+`<div class="practice"><div class="prompt">${w.ru}</div><div class="options">${quizOptions.map(id=>`<button class="option ${quizSolved&&id===w.id?'correct':''} ${quizWrong===id?'wrong':''}" data-action="quiz-choice" data-id="${id}" ${quizSolved?'disabled':''}>${lookup(id).en}</button>`).join('')}</div>${quizSolved?`<p class="feedback">⭐ Правильно: ${w.en}</p><div class="buttons">${button(quizIndex===4?'Поиграем в Bingo →':'Следующее слово →','quiz-next')}</div>`:'<p class="muted">Выбери один вариант.</p>'}</div>`;}
+function winningLine(){const lines=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];return lines.find(line=>line.every(i=>bingoMarked.has(i)))||[];}
+function renderBingo(){
+ const complete=bingoIndex>=bingoCalls.length;
+ const id=complete?null:bingoCalls[bingoIndex];
+ const total=id===null?0:bingoBoard.filter(x=>x===id).length;
+ const marked=id===null?0:bingoBoard.filter((x,i)=>x===id&&bingoMarked.has(i)).length;
+ game.innerHTML=head('Bingo — найди все слова!','Слушай слово, смотри на русский перевод и отмечай все клеточки с нужным английским словом.')+meter(bingoIndex)+
+ (complete?`<div class="bingo-chant">🎉 BINGO!</div><p class="bingo-instruction">Ты нашла все слова на поле!</p>`:
+ `<div class="bingo-caller"><div><div class="muted">СЛОВО ${bingoIndex+1} ИЗ 5</div><strong>${lookup(id).ru}</strong></div><button type="button" class="sound" data-action="speak" data-id="${id}">🔊 Послушать</button></div><p class="bingo-counter">Отмечено клеточек с этим словом: ${marked} из ${total}</p>`)+
+ `<div class="bingo-board">${bingoBoard.map((cell,i)=>`<button type="button" class="bingo-cell ${bingoMarked.has(i)?'marked':''} ${bingoLine.includes(i)?'linewin':''}" data-action="bingo-mark" data-index="${i}" ${bingoMarked.has(i)||complete?'disabled':''}>${escapeHTML(lookup(cell).en)}</button>`).join('')}</div>`+
+ (complete?`<div class="buttons">${button('Восстанавливаем буквы →','next')}</div>`:'<p class="muted" style="text-align:center">Если слово встречается дважды — отметь обе клеточки.</p>');
+}
+function markBingo(index){
+ if(bingoIndex>=5||index<0||index>=9||bingoMarked.has(index))return;
+ const target=bingoCalls[bingoIndex];
+ if(bingoBoard[index]!==target){notify('Это другое слово. Попробуй ещё!');return;}
+ bingoMarked.add(index);
+ const prevLine=bingoLine.length;
+ bingoLine=winningLine();
+ const remaining=bingoBoard.some((id,i)=>id===target&&!bingoMarked.has(i));
+ if(!remaining){bingoIndex++;notify(bingoIndex===5?'BINGO! 🎉':'Молодец! Следующее слово ⭐');}
+ else notify('Есть! Найди остальные такие же слова.');
+ if(!prevLine&&bingoLine.length)notify('БИНГО! Собрана линия ⭐');
+ renderBingo();
+}
+function currentMissing(){return lookup(holesOrder[holesIndex]);}
+function remainingHoles(w){return w.holes.filter(i=>!holesRevealed.has(i));}
+function renderMissing(){
+ const w=currentMissing(),left=remainingHoles(w);
+ const pattern=w.en.split('').map((l,i)=>l===' '?'<span class="letter space" aria-label="пробел"></span>':
+ `<span class="letter ${w.holes.includes(i)?holesSolved?'inserted':holesRevealed.has(i)?'hinted':'blank':''}" ${w.holes.includes(i)&&!holesRevealed.has(i)&&!holesSolved?'data-empty="'+i+'"':''}>${w.holes.includes(i)&&!holesSolved&&!holesRevealed.has(i)?'?':l}</span>`).join('');
+ game.innerHTML=head('Верни буквы!','Впиши только пропущенные буквы слева направо. Если трудно, открой подсказку или пропусти слово.')+meter(holesIndex+(holesSolved?1:0))+
+ `<div class="practice">${picture(w.id)}<div><span class="ru">${w.ru}</span></div><div class="letters">${pattern}</div>`+
+ (holesSolved?
+ `<p class="feedback ${holesWasSkipped?'caution':''}">${holesWasSkipped?'Пока пропустили. Запомни написание:':'⭐ Буквы на своих местах!'} <strong>${w.en}</strong></p><button type="button" class="sound" data-action="speak" data-id="${w.id}">🔊 Послушать</button>`:
+ `<label class="muted" for="holes-input">Оставшиеся пропущенные буквы (${left.length}):</label><input class="answer" id="holes-input" type="text" maxlength="${left.length}" autocomplete="off" autocapitalize="off" spellcheck="false" ${holesAnimating?'disabled':''}><p class="muted">Например: c ? t → a</p>${holesRevealed.size?`<p class="hintline">Голубые буквы — открытые подсказки. Впиши только остальные.</p>`:''}`)+
+ `<div class="buttons">${holesSolved?button(holesIndex===4?'Теперь пишем сами →':'Следующее слово →','holes-next'):
+ button('Проверить','holes-check','primary missing-action')+button('💡 Подсказка','holes-hint','secondary missing-action')+button('Пропустить ↷','holes-skip','secondary missing-action')}</div></div>`;
+ if(!holesSolved&&!holesAnimating){let el=document.getElementById('holes-input');if(el)el.focus();}
+}
+function hintMissing(){
+ if(holesSolved||holesAnimating)return;
+ const w=currentMissing(),remaining=remainingHoles(w);
+ if(!remaining.length)return;
+ const i=remaining[0];holesRevealed.add(i);
+ if(remainingHoles(w).length===0){holesSolved=true;holesWasSkipped=false;notify('Ты открыла все буквы. Прочитай слово!');}
+ renderMissing();
+}
+function revealCorrectMissing(){
+ if(holesSolved||holesAnimating)return;
+ const w=currentMissing(),remaining=remainingHoles(w);
+ const input=document.getElementById('holes-input');
+ const typed=norm(input.value).replace(/\s/g,'');
+ const expected=remaining.map(i=>w.en[i]).join('');
+ if(typed!==expected){notify(typed?'Проверь буквы или нажми «Подсказка»':'Впиши буквы или воспользуйся подсказкой');return;}
+ if(!remaining.length){holesSolved=true;renderMissing();return;}
+ flyMissingLetters(remaining,expected,input);
+}
+function flyMissingLetters(remaining,expected,input){
+ holesAnimating=true;
+ const source=input.getBoundingClientRect();
+ input.disabled=true;
+ document.querySelectorAll('.missing-action').forEach(b=>b.disabled=true);
+ const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const token=runId;
+ const spans=[];
+ if(!reduced){remaining.forEach((pos,i)=>{
+  let slot=game.querySelector(`[data-empty="${pos}"]`);if(!slot)return;
+  const dest=slot.getBoundingClientRect();
+  const x=source.left+source.width/2+(i-(remaining.length-1)/2)*28-15;
+  const y=source.top+source.height/2-21;
+  const dx=dest.left+dest.width/2-(x+15);
+  const dy=dest.top+dest.height/2-(y+21);
+  let fly=document.createElement('span');fly.className='flying-letter';fly.textContent=expected[i];fly.style.left=x+'px';fly.style.top=y+'px';document.body.appendChild(fly);spans.push(fly);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{if(token!==runId)return;fly.style.transform=`translate(${dx}px,${dy}px) scale(1.12)`;}));
+ });}
+ const finish=()=>{spans.forEach(el=>el.remove());if(token!==runId)return;holesSolved=true;holesAnimating=false;holesWasSkipped=false;renderMissing();};
+ if(reduced||spans.length===0)finish();else setTimeout(finish,760);
+}
+function skipMissing(){
+ if(holesSolved||holesAnimating)return;
+ holesSkipped.add(currentMissing().id);holesSolved=true;holesWasSkipped=true;renderMissing();notify('Можно пропустить — потом повторим!');
+}
+function renderWrite(){let w=lookup(writeOrder[writeIndex]);game.innerHTML=head('Пишу сама!','Посмотри на картинку и напиши всё слово без образца.')+meter(writeIndex+(writeSolved?1:0))+`<div class="practice">${picture(w.id)}<div><span class="ru">${w.ru}</span></div>${writeSolved?`<p class="feedback">🌟 Верно: ${w.en}</p><button class="sound" data-action="speak" data-id="${w.id}">🔊 Послушать</button>`:`<label class="muted" for="write-input">Напиши на английском:</label><input class="answer" id="write-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false"><p class="muted">${writeHint?'Подсказка: первая буква — '+w.en[0]:'Вспомни каждую букву. Не торопись!'}</p>`}<div class="buttons">${button(writeSolved?(writeIndex===4?'К диктанту →':'Следующее слово →'):'Проверить слово',writeSolved?'write-next':'write-check')}</div></div>`;}
+function renderDictation(){let correct=dictOrder.filter(id=>norm(dictAnswers[id])===lookup(id).en).length;game.innerHTML=head('Мой диктант!','Пиши слова по памяти. На этом этапе нет ни картинок, ни английской озвучки.')+`<div class="buttons"><button type="button" class="secondary" data-action="teacher-toggle" ${dictChecked?'disabled':''}>${teacher?'👩‍🏫 Показать русские слова':'👩‍🏫 Режим учителя: скрыть перевод'}</button></div><div class="dictlist">${dictOrder.map((id,i)=>{let w=lookup(id),ok=norm(dictAnswers[id])===w.en;return `<div class="dictrow ${dictChecked?(ok?'ok':'no'):''}"><span class="num">${i+1}</span><label for="dict-${id}">${teacher?'Слово №'+(i+1):w.ru}</label><input id="dict-${id}" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Ответ №${i+1}" value="${escapeHTML(dictAnswers[id]||'')}" ${dictChecked?'disabled':''}>${dictChecked?`<div class="correction ${ok?'good':''}">${ok?'✓ Правильно':'Правильно: '+w.en}</div>`:''}</div>`;}).join('')}</div>${dictChecked?`<div class="result"><h3>${correct===5?'🏆 5 из 5! Отлично!':correct>=3?'⭐ '+correct+' из 5! Хорошая работа!':'💛 '+correct+' из 5. Продолжим!'} </h3><p>${correct===5?'Ты написала все слова по памяти!':'Посмотри, какие слова нужно повторить, и попробуй ещё раз.'}</p></div><div class="buttons">${button('↻ Повторить диктант','dict-retry')}${button('Начать тренировку заново','all-reset','secondary')}</div>`:`<div class="buttons">${button('Проверить диктант','dict-check')}</div><p class="muted" style="text-align:center">Сначала напиши все пять слов.</p>`}`;}
+function saveDict(){dictOrder.forEach(id=>{let el=document.getElementById('dict-'+id);if(el)dictAnswers[id]=el.value;});}
+function handle(action,id,index){
+ if(action==='speak'){speak(id);return;}
+ if(action==='next'){if(stage===0||stage===1&&matched.size===5||stage===2&&memoryMatched.size===5||stage===4&&bingoIndex===5)next();return;}
+ if(action==='select-picture'&&stage===1){if(!matched.has(id)){selected=id;renderMatching();}return;}
+ if(action==='select-word'&&stage===1){if(!selected){notify('Сначала выбери картинку!');return;}if(selected===id){matched.add(id);selected=null;renderMatching();notify('Отлично! ⭐');}else notify('Это не та пара!');return;}
+ if(action==='memory-flip'&&stage===2){flipMemory(Number(index));return;}
+ if(action==='quiz-choice'&&stage===3&&!quizSolved){if(id===quizOrder[quizIndex]){quizSolved=true;quizWrong='';renderQuiz();}else{quizWrong=id;renderQuiz();notify('Попробуй ещё!');}return;}
+ if(action==='quiz-next'&&stage===3&&quizSolved){if(quizIndex===4)next();else{quizIndex++;initQuestion();renderQuiz();}return;}
+ if(action==='bingo-mark'&&stage===4){markBingo(Number(index));return;}
+ if(action==='holes-hint'&&stage===5){hintMissing();return;}
+ if(action==='holes-skip'&&stage===5){skipMissing();return;}
+ if(action==='holes-check'&&stage===5){revealCorrectMissing();return;}
+ if(action==='holes-next'&&stage===5&&holesSolved){if(holesIndex===4)next();else{holesIndex++;holesSolved=false;holesWasSkipped=false;holesRevealed=new Set();renderMissing();}return;}
+ if(action==='write-check'&&stage===6&&!writeSolved){let w=lookup(writeOrder[writeIndex]),input=document.getElementById('write-input'),typed=norm(input.value);if(typed===w.en){writeSolved=true;renderWrite();}else{writeErrors++;notify(typed?'Проверь написание!':'Напиши слово');if(writeErrors>=2&&!writeHint){writeHint=true;let saved=input.value;renderWrite();document.getElementById('write-input').value=saved;}}return;}
+ if(action==='write-next'&&stage===6&&writeSolved){if(writeIndex===4)next();else{writeIndex++;writeSolved=false;writeErrors=0;writeHint=false;renderWrite();}return;}
+ if(action==='teacher-toggle'&&stage===7&&!dictChecked){saveDict();teacher=!teacher;renderDictation();return;}
+ if(action==='dict-check'&&stage===7&&!dictChecked){saveDict();let empty=dictOrder.find(id=>!norm(dictAnswers[id]));if(empty){notify('Заполни все пять ответов');document.getElementById('dict-'+empty).focus();return;}dictChecked=true;renderDictation();return;}
+ if(action==='dict-retry'&&stage===7){dictAnswers={};dictChecked=false;dictOrder=shuffled(dictOrder);renderDictation();return;}
+ if(action==='all-reset'){startOver();return;}
+}
+game.addEventListener('click',e=>{let b=e.target.closest('[data-action]');if(b)handle(b.dataset.action,b.dataset.id,b.dataset.index);});
+game.addEventListener('input',e=>{if(stage===7&&!dictChecked&&e.target.id.startsWith('dict-'))dictAnswers[e.target.id.slice(5)]=e.target.value;});
+game.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.isComposing){if(e.target.id==='holes-input'){e.preventDefault();handle('holes-check');}if(e.target.id==='write-input'){e.preventDefault();handle('write-check');}}});
+document.getElementById('restart').addEventListener('click',()=>{if(confirm('Начать тренажёр сначала?'))startOver();});
+render();
+</script>
+</body>
+</html>
